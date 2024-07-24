@@ -6,7 +6,7 @@ export const NavBar = () => {
     return (
         <ul className="navbar">
             <li className="navbar-item">
-                <Link to="/collection">Collection</Link>
+                <Link to="/collection" className="navbar-link">Collection</Link>
             </li>
             {localStorage.getItem("exhibit_user") ? (
                 <li className="navbar-item navbar-logout">

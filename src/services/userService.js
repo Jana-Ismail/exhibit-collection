@@ -4,13 +4,21 @@ export const getUserByEmail = (email) => {
     )
   }
   
-export const createUser = (customer) => {
+export const createUser = (user) => {
     return fetch("http://localhost:8088/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(customer),
+      body: JSON.stringify(user),
     }).then((res) => res.json())
+  }
+
+  export const getArtworksByUserId = (userId) => {
+    return fetch(`http://localhost:8088/artworks/?userId=${userId}&_expand=user`).then((res) => res.json())
+  }
+
+  export const getUserById = (userId) => {
+    return fetch(`http://localhost:8088/users?id=${userId}`).then(res => res.json())
   }
   

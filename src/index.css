@@ -1,5 +1,7 @@
 /* Import the google web fonts you want to use */
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300&family=Quicksand&family=Roboto:wght@100&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Baskervville+SC&display=swap');
+
 
 /* FONTS
 font-family: "Nunito", sans-serif;
@@ -10,15 +12,18 @@ font-family: "Roboto", sans-serif;
 /* COLOR PALETTE */
 /* Feel free to change these values and create your own color palette! https://coolors.co/ is a great resource */
 :root {
-  --primary: #ffb400;
+  --primary: #f7c299;
   --secondary: #00a6ed;
   --info: #7fb800;
   --warning: #f6511d;
   --white: #ffffff;
   --offWhite: #f2f2f3;
   --dark: #3b3b3b;
+  --darkText: #573012;
   --outline: #c3c0c0;
-  --appBackground: #dddade;
+  --wood: #a55f2a;
+  /* --appBackground: #dddade; */
+  --appBackground: #ffffff;
 }
 
 /* GLOBAL STYLES */
@@ -28,6 +33,7 @@ input,
 select,
 textarea {
   font-family: "Nunito", sans-serif;
+  color: var(--darkText)
 }
 
 body {
@@ -41,7 +47,8 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Roboto", serif;
+  /* font-family: "Roboto", serif; */
+  font-family: "Baskervville SC", serif;
 }
 
 /* This prevents all the links in the app from having default underline */

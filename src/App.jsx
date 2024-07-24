@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import './App.css'
 import { Route, Routes } from 'react-router-dom'
 import { Login } from './components/auth/Login.jsx'
@@ -6,7 +5,7 @@ import { Register } from './components/auth/Register.jsx'
 import { Authorized } from './views/Authorized.jsx'
 import { ApplicationViews } from './views/ApplicationViews.jsx'
 
-function App() {
+export const App = () => {
 
   return (
     <Routes>
@@ -21,8 +20,7 @@ function App() {
           </Authorized>
         }
       />
+      
     </Routes>
   )
 }
-
-export default App

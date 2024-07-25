@@ -3,6 +3,7 @@ import { useState, useEffect } from "react"
 import { Outlet, Route, Routes } from "react-router-dom"
 import { NavBar } from "../components/nav/NavBar.jsx"
 import { ArtworkList } from "../components/artworks/ArtworkList.jsx"
+import { ArtworkDetails } from "../components/artworks/ArtworkDetails.jsx"
 
 
 export const ApplicationViews = () => {
@@ -29,7 +30,7 @@ export const ApplicationViews = () => {
                 <Route index element={<h1>Welcome to my blank app!</h1>} />
                 <Route path="collection">
                     <Route index element={<ArtworkList currentUser={currentUser}/>} />
-                    <Route path=":artworkId" element={<h1>Artwork Details</h1>} />
+                    <Route path=":artworkId" element={<ArtworkDetails />} />
                 </Route>
             </Route>
         </Routes>

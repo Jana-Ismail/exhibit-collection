@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
-import { getArtworksByUserId, getUserById } from "../../services/userService"
+import { getUserById } from "../../services/userService"
+import { getArtworksByUserId } from "../../services/artworkService.js"
 import { Artwork } from "./Artwork"
 import "./Artwork.css"
 import { Link } from "react-router-dom"

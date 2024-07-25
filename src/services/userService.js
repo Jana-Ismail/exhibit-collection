@@ -14,10 +14,6 @@ export const createUser = (user) => {
     }).then((res) => res.json())
   }
 
-  export const getArtworksByUserId = (userId) => {
-    return fetch(`http://localhost:8088/artworks/?userId=${userId}&_expand=user`).then((res) => res.json())
-  }
-
   export const getUserById = (userId) => {
     return fetch(`http://localhost:8088/users?id=${userId}`).then(res => res.json())
   }

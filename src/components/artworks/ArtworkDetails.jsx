@@ -42,6 +42,10 @@ export const ArtworkDetails = () => {
                             {artwork.artist}
                         </div>
                         <div className="artwork-detail">
+                            <span className="detail-description">Nationality : </span>
+                            {artwork.nationality}
+                        </div>
+                        <div className="artwork-detail">
                             <span className="detail-description">Year : </span>
                             {artwork.year}
                         </div>
@@ -52,10 +56,6 @@ export const ArtworkDetails = () => {
                         <div className="artwork-detail">
                             <span className="detail-description">Genre : </span>
                             {artwork.genre}
-                        </div>
-                        <div className="artwork-detail">
-                            <span className="detail-description">Country : </span>
-                            Artwork country of origin
                         </div>
                     </div>
                     <div className="viewing-details">

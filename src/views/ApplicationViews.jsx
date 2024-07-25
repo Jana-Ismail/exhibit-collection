@@ -5,6 +5,7 @@ import { NavBar } from "../components/nav/NavBar.jsx"
 import { ArtworkList } from "../components/artworks/ArtworkList.jsx"
 import { ArtworkDetails } from "../components/artworks/ArtworkDetails.jsx"
 import { UserList } from "../components/users/UserList.jsx"
+import { UserDetails } from "../components/users/UserDetails.jsx"
 
 
 export const ApplicationViews = () => {
@@ -35,7 +36,7 @@ export const ApplicationViews = () => {
                 </Route>
                 <Route path="users">
                     <Route index element={<UserList />} />
-                    <Route path=":userId" element={<h1>UserDetails</h1>} />
+                    <Route path=":userId" element={<UserDetails currentUser={currentUser}/>} />
                 </Route>
             </Route>
         </Routes>

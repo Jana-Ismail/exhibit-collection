@@ -1,5 +1,5 @@
 .user {
-    background-color: rgb(218, 141, 86);
+    background-color: var(--woodLight);
     margin: 7px;
     padding: 7px 20px;
     color: white;

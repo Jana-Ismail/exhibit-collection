@@ -22,7 +22,8 @@ export const UserDetails = ({currentUser}) => {
     return (
         <div>
             <h2>User Details</h2>
-            <div>{user.name}</div>
+            <div>Name: {user.name}</div>
+            <div>Hometown: {user.hometown}</div>
             <div>Favorite Artist: {user.favoriteArtist}</div>
             <div>Collection Title: {user.collectionTitle}</div>
             <h2>{user.name}'s Collection</h2>

@@ -4,6 +4,7 @@ import { Outlet, Route, Routes } from "react-router-dom"
 import { NavBar } from "../components/nav/NavBar.jsx"
 import { ArtworkList } from "../components/artworks/ArtworkList.jsx"
 import { ArtworkDetails } from "../components/artworks/ArtworkDetails.jsx"
+import { UserList } from "../components/users/UserList.jsx"
 
 
 export const ApplicationViews = () => {
@@ -31,6 +32,10 @@ export const ApplicationViews = () => {
                 <Route path="collection">
                     <Route index element={<ArtworkList currentUser={currentUser}/>} />
                     <Route path=":artworkId" element={<ArtworkDetails />} />
+                </Route>
+                <Route path="users">
+                    <Route index element={<UserList />} />
+                    <Route path=":userId" element={<h1>UserDetails</h1>} />
                 </Route>
             </Route>
         </Routes>

@@ -29,7 +29,11 @@ export const ArtworkList = ({ currentUser }) => {
 
     return (
         <>
-            <h2 className="collection-title">{artworks.user?.collectionTitle}</h2>
+            <div className="collection-header">
+                <h2 className="collection-title">My Collection</h2>
+                <button className="add-artwork-btn">Add Artwork</button>
+                
+            </div>
             <div className="artwork-collection">
                 {artworks.map(artwork => {
                     return (

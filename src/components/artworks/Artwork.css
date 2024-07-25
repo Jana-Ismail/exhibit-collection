@@ -51,3 +51,14 @@
     font-weight: bold;
     color: rgb(199, 94, 20);
 }
+
+.collection-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 30px;
+}
+
+.add-artwork-btn {
+    background-color: var(--wood);
+}

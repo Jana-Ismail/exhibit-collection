@@ -2,6 +2,8 @@ import { useState } from "react"
 import "./Form.css"
 import { createArtwork } from "../../services/artworkService"
 
+//adding comment to push along a git merge
+
 export const ArtworkForm = ( {currentUser} ) => {
     const [artwork, setArtwork] = useState({
         imageUrl: "",

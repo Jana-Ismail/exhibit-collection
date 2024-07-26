@@ -1,5 +1,6 @@
 import { useState } from "react"
 import "./Form.css"
+import { createArtwork } from "../../services/artworkService"
 
 export const ArtworkForm = ( {currentUser} ) => {
     const [artwork, setArtwork] = useState({

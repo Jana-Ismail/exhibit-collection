@@ -2,7 +2,7 @@ import "./Artwork.css"
 
 export const Artwork = ({ artwork }) => {
     return (
-        <div className="artwork-collection-item">
+        <div className="artwork-collection-card">
             <img
                 className="artwork-image" 
                 src="../dataVisualizations/MondrianBlackSquare.jpg"

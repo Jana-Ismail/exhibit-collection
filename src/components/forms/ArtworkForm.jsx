@@ -1,5 +1,6 @@
 import { useState } from "react"
 import "./Form.css"
+import { createArtwork } from "../../services/artworkService"
 
 export const ArtworkForm = ( {currentUser} ) => {
     const [artwork, setArtwork] = useState({
@@ -50,6 +51,12 @@ export const ArtworkForm = ( {currentUser} ) => {
                             className="form-control"
                             type="text"
                             placeholder="URL of new artwork image"
+                            value={artwork.imageUrl}
+                            onChange={(event) => {
+                                const artworkCopy = { ...artwork }
+                                artworkCopy.imageUrl = event.target.value
+                                setArtwork(artworkCopy)
+                            }}
                         />
                     </div>
                 </fieldset>
@@ -60,6 +67,12 @@ export const ArtworkForm = ( {currentUser} ) => {
                             className="form-control"
                             type="text"
                             placeholder="Title of artwork"
+                            value={artwork.title}
+                            onChange={(event) => {
+                                const artworkCopy = { ...artwork }
+                                artworkCopy.title = event.target.value
+                                setArtwork(artworkCopy)
+                            }}
                         />
                     </div>
                 </fieldset>
@@ -70,6 +83,28 @@ export const ArtworkForm = ( {currentUser} ) => {
                             className="form-control"
                             type="text"
                             placeholder="Artist name"
+                            value={artwork.artist}
+                            onChange={(event) => {
+                                const artworkCopy = { ...artwork }
+                                artworkCopy.artist = event.target.value
+                                setArtwork(artworkCopy)
+                            }}
+                        />
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <div className="form-group">
+                    <label>Nationality</label>
+                        <input 
+                            className="form-control"
+                            type="text"
+                            placeholder="Nationality of artist"
+                            value={artwork.nationality}
+                            onChange={(event) => {
+                                const artworkCopy = { ...artwork }
+                                artworkCopy.nationality = event.target.value
+                                setArtwork(artworkCopy)
+                            }}
                         />
                     </div>
                 </fieldset>
@@ -80,6 +115,12 @@ export const ArtworkForm = ( {currentUser} ) => {
                             className="form-control"
                             type="text"
                             placeholder="Year(s) created"
+                            value={artwork.year}
+                            onChange={(event) => {
+                                const artworkCopy = { ...artwork }
+                                artworkCopy.year = event.target.value
+                                setArtwork(artworkCopy)
+                            }}
                         />
                     </div>
                 </fieldset>
@@ -116,6 +157,12 @@ export const ArtworkForm = ( {currentUser} ) => {
                             className="form-control"
                             type="text"
                             placeholder="Name of gallery or museum you viewed this artwork"
+                            value={artwork.locationViewed}
+                            onChange={(event) => {
+                                const artworkCopy = { ...artwork }
+                                artworkCopy.locationViewed = event.target.value
+                                setArtwork(artworkCopy)
+                            }}
                         />
                     </div>
                 </fieldset>
@@ -125,6 +172,12 @@ export const ArtworkForm = ( {currentUser} ) => {
                         <input 
                             className="form-control"
                             type="date"
+                            value={artwork.date}
+                            onChange={(event) => {
+                                const artworkCopy = { ...artwork }
+                                artworkCopy.date = event.target.value
+                                setArtwork(artworkCopy)
+                            }}
                         />
                     </div>
                 </fieldset>
@@ -134,12 +187,23 @@ export const ArtworkForm = ( {currentUser} ) => {
                         <input 
                             className="form-control"
                             type="text"
-                            placeholder="City you viewed this artwork"
+                            placeholder="City in which you viewed this artwork"
+                            value={artwork.cityViewed}
+                            onChange={(event) => {
+                                const artworkCopy = { ...artwork }
+                                artworkCopy.cityViewed = event.target.value
+                                setArtwork(artworkCopy)
+                            }}
                         />
                     </div>
                 </fieldset>
-                <button className="submit-btn">Create Artwork</button>
-                
+                <fieldset>
+                    <div className="form-group">
+                        <label>Notes</label>
+                        <textarea></textarea>
+                    </div>
+                </fieldset>
+                <button className="submit-btn" onClick={handleSave}>Create Artwork</button>  
             </form>
         </div>
 

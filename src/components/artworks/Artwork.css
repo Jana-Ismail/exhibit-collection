@@ -1,0 +1,68 @@
+.collection-title {
+    padding: 20px 40px;
+}
+
+.artwork-collection {
+    display: flex;
+    flex-wrap: wrap;
+    width: 90%;
+    gap: 20px;
+    justify-content: center;
+    margin: 20px;
+}
+
+.artwork-collection-card {
+    max-width: 250px;
+}
+
+.image-detail {
+    font-size: 14px;
+    text-align: center;
+    letter-spacing: 1.5px;
+}
+
+.artwork-title {
+    font-style: italic;
+}
+
+.artwork-image {
+    /* flex-basis: 30%; */
+    border: 3px solid #a55f2a;
+    max-width: 250px;
+}
+
+.artwork-image:hover {
+    border: 3px solid #ca6f29;
+    cursor: pointer;
+}
+
+.artwork-image-detail {
+    /* flex-basis: 30%; */
+    border: 3px solid #a55f2a;
+    max-width: 250px;
+}
+
+.artwork-details-container {
+    display: flex;
+    gap: 20px;
+}
+
+.artwork-detail {
+    text-align: left;
+}
+
+.detail-description {
+    font-weight: bold;
+    color: rgb(199, 94, 20);
+}
+
+.collection-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 30px;
+}
+
+.add-artwork-btn {
+    background-color: var(--woodLight);
+}

@@ -1,11 +1,43 @@
 import { useState } from "react"
 import "./Form.css"
 
-export const ArtworkForm = () => {
-    const [imageURL, setImageURL] = useState("")
-    const [artworkTitle, setArtworkTitle] = useState("")
-    const [artworkArtist, setArtworkArtist] = useState("")
-    const [artworkYear, setArtworkYear] = useState("")
+export const ArtworkForm = ( {currentUser} ) => {
+    const [artwork, setArtwork] = useState({
+        imageUrl: "",
+        title: "",
+        artist: "",
+        nationality: "",
+        year: "",
+        genre: "",
+        medium: "",
+        locationViewed: "",
+        dateViewed: "",
+        cityViewed: "",
+        notes: "",
+    })
+
+    const handleSave = (event) => {
+        event.preventDefault()
+
+        const newArtwork = {
+            userId: currentUser.id,
+            isFavorited: false,
+            imageUrl: artwork.imageUrl,
+            title: artwork.title,
+            artist: artwork.artist,
+            nationality: artwork.nationality,
+            year: artwork.year,
+            genre: artwork.genre,
+            medium: artwork.medium,
+            locationViewed: artwork.locationViewed,
+            dateViewed: artwork.dateViewed,
+            cityViewed: artwork.cityViewed,
+            notes: artwork.notes,
+            dateAdded: new Date(),
+        }
+
+        createArtwork(newArtwork)
+    }
 
     return (
         <div>

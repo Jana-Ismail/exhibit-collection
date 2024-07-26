@@ -28,6 +28,8 @@ export const ArtworkList = ({ currentUser }) => {
         // getAndSetUser()
     }, [currentUser])
 
+    useEffect(() => {}, [artworks])
+
     return (
         <>
             <div className="collection-header">

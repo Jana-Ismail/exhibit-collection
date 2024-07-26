@@ -3,11 +3,12 @@ import { getUserById } from "../../services/userService"
 import { getArtworksByUserId } from "../../services/artworkService.js"
 import { Artwork } from "./Artwork"
 import "./Artwork.css"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 
 export const ArtworkList = ({ currentUser }) => {
     const [artworks, setArtworks] = useState([])
+    const navigate = useNavigate()
     // const [user, setUser] = useState([])
 
     const getAndSetArtworks = () => {
@@ -31,7 +32,14 @@ export const ArtworkList = ({ currentUser }) => {
         <>
             <div className="collection-header">
                 <h2 className="collection-title">My Collection</h2>
-                <button className="add-artwork-btn">Add Artwork</button>
+                <button 
+                    className="add-artwork-btn"
+                    onClick={() => {
+                        navigate("/collection/create")
+                    }}
+                >
+                    Add Artwork
+                </button>
                 
             </div>
             <div className="artwork-collection">

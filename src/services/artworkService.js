@@ -1,4 +1,4 @@
-// export const getArtworks = () => {
+// export const getAllArtworks = () => {
 //     return fetch(`http:localhost:8088/artworks`).then(res => res.json())
 // }
 
@@ -21,4 +21,12 @@ export const createArtwork = (artwork) => {
             body: JSON.stringify(artwork),
         }
     )
+}
+
+export const getAllGenres = () => {
+    return fetch(`http://localhost:8088/genres`).then(res => res.json())
+}
+
+export const getAllMediums = () => {
+    return fetch(`http://localhost:8088/mediums`).then(res => res.json())
 }

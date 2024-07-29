@@ -7,6 +7,7 @@ import { ArtworkDetails } from "../components/artworks/ArtworkDetails.jsx"
 import { UserList } from "../components/users/UserList.jsx"
 import { UserDetails } from "../components/users/UserDetails.jsx"
 import { ArtworkForm } from "../components/forms/ArtworkForm.jsx"
+import { UserForm } from "../components/forms/UserForm.jsx"
 
 
 export const ApplicationViews = () => {
@@ -39,6 +40,10 @@ export const ApplicationViews = () => {
                 <Route path="users">
                     <Route index element={<UserList />} />
                     <Route path=":userId" element={<UserDetails currentUser={currentUser}/>} />
+                </Route>
+                <Route path="profile">
+                    <Route index element={<UserDetails currentUser={currentUser} />} />
+                    <Route path="edit" element={<UserForm currentUser={currentUser} />} />
                 </Route>
             </Route>
         </Routes>

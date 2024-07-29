@@ -4,3 +4,7 @@
     padding: 7px 20px;
     color: white;
 }
+
+.edit-btn {
+    background-color: rgb(65, 125, 65);
+}

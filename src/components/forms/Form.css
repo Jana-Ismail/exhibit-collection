@@ -2,3 +2,30 @@
    background-color: var(--woodLight);
    margin: 10px;
 }
+
+.save-btn {
+   background-color: rgb(73, 95, 73);
+   padding: 15px;
+   width: 100px;
+   margin: auto;
+   border-radius: 4px;
+
+}
+
+/* .profile-update {
+   background-color:rgb(193, 183, 179);
+   background-color: rgb(184, 195, 188);
+   border-radius: 2px;
+   border: 1px solid rgb(73, 95, 73);
+   box-shadow: none;
+} */
+
+/* .profile-update input {
+   background-color: rgb(233, 234, 233);
+   height: 25px;
+   border: 1px solid rgb(73, 95, 73);
+} */
+
+.form-control {
+   padding-left: 20px;
+}

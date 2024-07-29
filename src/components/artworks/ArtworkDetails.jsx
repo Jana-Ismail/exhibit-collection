@@ -27,8 +27,8 @@ export const ArtworkDetails = () => {
                 <div className="artwork-details-section">
                     <img 
                         className="artwork-image-detail"
-                        src="../dataVisualizations/MondrianBlackSquare.jpg"
-                        alt="Image of Mondrian's Black Square" 
+                        src={artwork.imageUrl}
+                        alt={`An image of ${artwork.artist}'s ${artwork.title}`}
                     />
                 </div>
                 <div className="artwork-details-section">

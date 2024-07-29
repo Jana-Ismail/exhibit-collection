@@ -12,7 +12,7 @@ export const ArtworkList = ({ currentUser }) => {
     // const [user, setUser] = useState([])
 
     const getAndSetArtworks = () => {
-        getArtworksByUserId(currentUser.id).then(artworksArr => {
+        getArtworksByUserId(currentUser?.id).then(artworksArr => {
             setArtworks(artworksArr)
         })
     }
@@ -27,8 +27,6 @@ export const ArtworkList = ({ currentUser }) => {
         getAndSetArtworks()
         // getAndSetUser()
     }, [currentUser])
-
-    useEffect(() => {}, [artworks])
 
     return (
         <>

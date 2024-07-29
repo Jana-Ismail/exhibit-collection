@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react"
-import { getUserById } from "../../services/userService"
+import { getUserById, updateUser } from "../../services/userService"
+import { useNavigate } from "react-router-dom"
 
 export const UserForm = ( { currentUser } ) => {
-    const [user, setUser] = useState()
+    const [user, setUser] = useState({})
+    const navigate = useNavigate()
 
     const getAndSetUser = () => {
         getUserById(currentUser.id).then((userArr) => {
@@ -13,7 +15,26 @@ export const UserForm = ( { currentUser } ) => {
 
     useEffect(() => {
         getAndSetUser()
-    }, [currentUser, user])
+    }, [currentUser])
+
+    const handleSave = (event) => {
+        event.preventDefault()
+
+        const updatedUserObj = {
+            id: user.id,
+            name: user.name,
+            email: user.email,
+            isArtist: user.isArtist,
+            hometown: user.hometown,
+            favoriteArtist: user.favoriteArtist,
+            collectionTitle: user.collectionTitle
+        }
+
+        updateUser(updatedUserObj).then(() => {
+            getAndSetUser()
+            navigate('/profile')
+        })
+    }
 
     return (
         <form className="profile-update">
@@ -24,7 +45,12 @@ export const UserForm = ( { currentUser } ) => {
                     <input 
                         className="form-control" 
                         type="text"
-                        value={user.name} 
+                        value={user.name}
+                        onChange={(event) => {
+                            const userCopy = { ...user }
+                            userCopy.name = event.target.value
+                            setUser(userCopy)
+                        }}
                     />
                 </div>
             </fieldset>
@@ -34,7 +60,12 @@ export const UserForm = ( { currentUser } ) => {
                     <input 
                         className="form-control"
                         type="text" 
-                        value={user.hometown} 
+                        value={user.hometown}
+                        onChange={(event) => {
+                            const userCopy = {...user}
+                            userCopy.hometown = event.target.value
+                            setUser(userCopy)
+                        }}
                     />
                 </div>
             </fieldset>
@@ -44,7 +75,12 @@ export const UserForm = ( { currentUser } ) => {
                     <input 
                         className="form-control" 
                         type="text"
-                        value={user.favoriteArtist} 
+                        value={user.favoriteArtist}
+                        onChange={(event) => {
+                            const userCopy = {...user}
+                            userCopy.favoriteArtist = event.target.value
+                            setUser(userCopy)
+                        }}
                     />
                 </div>
             </fieldset>
@@ -55,12 +91,17 @@ export const UserForm = ( { currentUser } ) => {
                         className="form-control" 
                         type="text"
                         value={user.collectionTitle} 
+                        onChange={(event) => {
+                            const userCopy = {...user}
+                            userCopy.collectionTitle = event.target.value
+                            setUser(userCopy)
+                        }}
                     />
                 </div>
             </fieldset>
             <fieldset>
                 <div className="form-group">
-                    <button className="save-btn">SAVE</button>
+                    <button className="save-btn" onClick={handleSave}>Save Profile</button>
                 </div>
             </fieldset>
         </form>

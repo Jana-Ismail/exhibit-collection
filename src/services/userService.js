@@ -21,3 +21,15 @@ export const createUser = (user) => {
   export const getAllUsers = () => {
     return fetch('http://localhost:8088/users').then(res => res.json())
   }
+
+  export const updateUser = (userObj) => {
+    return fetch(
+      `http://localhost:8088/users/${userObj.id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userObj)
+      }
+    )
+  }

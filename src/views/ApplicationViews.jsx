@@ -8,6 +8,7 @@ import { UserList } from "../components/users/UserList.jsx"
 import { UserDetails } from "../components/users/UserDetails.jsx"
 import { ArtworkForm } from "../components/forms/ArtworkForm.jsx"
 import { UserForm } from "../components/forms/UserForm.jsx"
+import { UpdateArtworkForm } from "../components/forms/UpdateArtworkForm.jsx"
 
 
 export const ApplicationViews = () => {
@@ -34,7 +35,10 @@ export const ApplicationViews = () => {
                 <Route index element={<h1>Welcome to my blank app!</h1>} />
                 <Route path="collection">
                     <Route index element={<ArtworkList currentUser={currentUser}/>} />
-                    <Route path=":artworkId" element={<ArtworkDetails />} />
+                    <Route path=":artworkId">
+                        <Route index element={<ArtworkDetails currentUser={currentUser}/>} />
+                        <Route path="edit" element={<UpdateArtworkForm />}/>
+                    </Route>
                     <Route path="create" element={<ArtworkForm currentUser={currentUser} />} />
                 </Route>
                 <Route path="users">

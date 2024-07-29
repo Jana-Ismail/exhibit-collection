@@ -30,3 +30,26 @@ export const getAllGenres = () => {
 export const getAllMediums = () => {
     return fetch(`http://localhost:8088/mediums`).then(res => res.json())
 }
+
+export const updateArtwork = (artwork) => {
+    return fetch(
+        `http://localhost:8088/artworks/${artwork.id}`, {
+            method: 'PUT',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(artwork)
+        }
+    )
+}
+
+export const deleteArtwork = (artworkId) => {
+    return fetch(
+        `http://localhost:8088/artworks/${artworkId}`, {
+            method: 'DELETE',
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }
+    )
+}

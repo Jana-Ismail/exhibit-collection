@@ -1,11 +1,12 @@
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import "./Artwork.css"
 import { useEffect, useState } from "react"
 import { getArtworkById } from "../../services/artworkService.js"
 
-export const ArtworkDetails = () => {
+export const ArtworkDetails = ( {currentUser} ) => {
     const { artworkId } = useParams()
     const [ artwork, setArtwork ] = useState([])
+    const navigate = useNavigate()
 
     const getAndSetArtwork = () => {
         getArtworkById(artworkId).then((data) => {
@@ -19,6 +20,10 @@ export const ArtworkDetails = () => {
     useEffect(() => {
         getAndSetArtwork()
     }, [])
+
+    const handleDelete = () => {
+        
+    }
 
     return (
         <div>
@@ -77,6 +82,28 @@ export const ArtworkDetails = () => {
                         </div>
                     </div>
                 </div>
+            </div>
+            <div className="btn-container">
+                {currentUser.id === artwork.userId ? (
+                    <div>
+                        <button 
+                            className="edit-btn"
+                            onClick={(event) => {
+                                navigate(`/collection/${artworkId}/edit`)
+                            }}
+                        >
+                            Edit
+                        </button>
+                        <button 
+                            className="delete-btn-icon"
+                            onClick={handleDelete}
+                        >
+                            <i className="fa-solid fa-trash-can"></i>
+                        </button>
+                    </div>
+                ) : (
+                    ""
+                )}
             </div>
         </div>
     )

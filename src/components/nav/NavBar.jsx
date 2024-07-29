@@ -9,6 +9,9 @@ export const NavBar = () => {
                 <Link to="/collection" className="navbar-link">Collection</Link>
             </li>
             <li className="navbar-item">
+                <Link to="/collection/create" className="navbar-link">+ Artwork</Link>
+            </li>
+            <li className="navbar-item">
                 <Link to="/users" className="navbar-link">Users</Link>
             </li>
             <li className="navbar-item">

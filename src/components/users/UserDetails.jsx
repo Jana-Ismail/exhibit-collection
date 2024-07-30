@@ -52,12 +52,12 @@ export const UserDetails = ({currentUser}) => {
             }
             
             {userId ? (
-                <div className="artwork-collection">
-                    <div>
+                <div className="artwork-collection-section">
                     <h2>{user.name}'s Collection</h2>
+                    <div className="artwork-collection">
                     {artworks.map((artwork) => {
                     return (
-                        <div className="artwork-collection-card">
+                        <div className="artwork-collection-card" key={artwork.id}>
                                 <img
                                     className="artwork-image" 
                                     src={artwork.imageUrl}

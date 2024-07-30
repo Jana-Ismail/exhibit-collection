@@ -131,6 +131,7 @@ export const ArtworkForm = ( {currentUser} ) => {
                     <div className="form-group">
                     <label>Image URL</label>
                         <input 
+                            required
                             className="form-control"
                             type="text"
                             placeholder="URL of new artwork image"
@@ -207,7 +208,7 @@ export const ArtworkForm = ( {currentUser} ) => {
                         />
                     </div>
                 </fieldset>
-                <fieldset>
+                <fieldset required>
                     <div className="form-group">
                         <label>Location Viewed</label>
                         <input
@@ -263,7 +264,9 @@ export const ArtworkForm = ( {currentUser} ) => {
                         <textarea></textarea>
                     </div>
                 </fieldset>
-                <button className="submit-btn" onClick={handleSave}>Create Artwork</button>  
+                <fieldset>
+                    <button className="submit-btn" onClick={handleSave}>Create Artwork</button>  
+                </fieldset>
             </form>
         </div>
 

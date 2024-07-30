@@ -1,6 +1,6 @@
-// export const getAllArtworks = () => {
-//     return fetch(`http:localhost:8088/artworks`).then(res => res.json())
-// }
+export const getAllArtworks = () => {
+    return fetch(`http://localhost:8088/artworks`).then(res => res.json())
+}
 
 
 export const getArtworksByUserId = (userId) => {

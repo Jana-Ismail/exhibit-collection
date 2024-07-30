@@ -9,7 +9,6 @@ import { Link, useNavigate } from "react-router-dom"
 export const ArtworkList = ({ currentUser }) => {
     const [artworks, setArtworks] = useState([])
     const navigate = useNavigate()
-    // const [user, setUser] = useState([])
 
     const getAndSetArtworks = () => {
         getArtworksByUserId(currentUser?.id).then(artworksArr => {
@@ -17,15 +16,12 @@ export const ArtworkList = ({ currentUser }) => {
         })
     }
 
-    // const getAndSetUser = () => {
-    //     getUserById(currentUser.id).then(userObj => {
-    //         setUser(userObj)
-    //     })
-    // }
+    useEffect(() => {
+        getAndSetArtworks()
+    }, [])
 
     useEffect(() => {
         getAndSetArtworks()
-        // getAndSetUser()
     }, [currentUser])
 
     return (

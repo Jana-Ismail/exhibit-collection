@@ -5,14 +5,13 @@ import { useNavigate, useParams } from "react-router-dom"
 
 export const UpdateArtworkForm = () => {
     const {artworkId} = useParams()
-    console.log(artworkId)
     const navigate = useNavigate()
     
     const [artwork, setArtwork] = useState({})
-    const [genres, setGenres] = useState([])
-    const [mediums, setMediums] = useState([])
-    const [genreOption, setGenreOption] = useState(0)
-    const [mediumOption, setMediumOption] = useState(0)
+    // const [genres, setGenres] = useState([])
+    // const [mediums, setMediums] = useState([])
+    // const [genreOption, setGenreOption] = useState(0)
+    // const [mediumOption, setMediumOption] = useState(0)
 
     const getAndSetArtwork = () => {
         getArtworkById(artworkId).then((artworkObj) => {
@@ -38,23 +37,23 @@ export const UpdateArtworkForm = () => {
         getAndSetMediums()
     }, [artworkId])
 
-    useEffect(() => {
-        if (genreOption) {
-            const selectedGenre = genres.filter(genre => genre.id === genreOption)
-            const artworkCopy = {...artwork}
-            artworkCopy.genre = selectedGenre[0].type
-            setArtwork(artworkCopy)
-        }
-    }, [genreOption])
+    // useEffect(() => {
+    //     if (genreOption) {
+    //         const selectedGenre = genres.filter(genre => genre.id === genreOption)
+    //         const artworkCopy = {...artwork}
+    //         artworkCopy.genre = selectedGenre[0].type
+    //         setArtwork(artworkCopy)
+    //     }
+    // }, [genreOption])
 
-    useEffect(() => {
-        if (mediumOption) {
-            const selectedMedium = mediums.filter(medium => medium.id === mediumOption)
-            const artworkCopy = {...artwork}
-            artworkCopy.medium = selectedMedium[0].type
-            setArtwork(artworkCopy)
-        }
-    }, [mediumOption])
+    // useEffect(() => {
+    //     if (mediumOption) {
+    //         const selectedMedium = mediums.filter(medium => medium.id === mediumOption)
+    //         const artworkCopy = {...artwork}
+    //         artworkCopy.medium = selectedMedium[0].type
+    //         setArtwork(artworkCopy)
+    //     }
+    // }, [mediumOption])
 
     const handleSave = (event) => {
         event.preventDefault()
@@ -68,8 +67,8 @@ export const UpdateArtworkForm = () => {
             artist: artwork.artist,
             nationality: artwork.nationality,
             year: artwork.year,
-            genre: artwork.genre,
-            medium: artwork.medium,
+            genreId: artwork.genreId,
+            mediumId: artwork.mediumId,
             locationViewed: artwork.locationViewed,
             dateViewed: artwork.dateViewed,
             cityViewed: artwork.cityViewed,
@@ -92,9 +91,11 @@ export const UpdateArtworkForm = () => {
                             <select 
                                 id="artwork-genre"
                                 required
-                                // value={artwork.genre}
+                                value={artwork.genreId}
                                 onChange={(event) => {
-                                    setGenreOption(parseInt(event.target.value))
+                                    const copy = {...artwork}
+                                    copy.genreId = parseInt(event.target.value)
+                                    setArtwork(copy)
                                 }}
                             >
                                 <option value="0" disabled>Select a Genre</option>
@@ -112,9 +113,11 @@ export const UpdateArtworkForm = () => {
                             <select
                                 required 
                                 id="artwork-medium"
-                                // value={artwork.mediumId}
+                                value={artwork.mediumId}
                                 onChange={(event) => {
-                                    setMediumOption(parseInt(event.target.value))
+                                    const copy = {...artwork}
+                                    copy.mediumId = parseInt(event.target.value)
+                                    setArtwork(copy)
                                 }}
                             >
                                 <option value ="0" disabled>Select a Medium</option>
@@ -233,8 +236,7 @@ export const UpdateArtworkForm = () => {
                             value={artwork.date}
                             onChange={(event) => {
                                 const artworkCopy = { ...artwork }
-                                artworkCopy.date = event.target.value
-                                console.log(event)
+                                artworkCopy.dateViewed = event.target.value
                                 setArtwork(artworkCopy)
                             }}
                         />

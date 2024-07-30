@@ -8,8 +8,11 @@ export const getArtworksByUserId = (userId) => {
 }
 
 export  const getArtworkById = (artworkId) => {
-    return fetch(`http://localhost:8088/artworks?id=${artworkId}`).then((res) => res.json())
+    return fetch(`http://localhost:8088/artworks?id=${artworkId}&_expand=genre&_expand=medium`).then((res) => res.json())
 }
+// export  const getArtworkById = (artworkId) => {
+//     return fetch(`http://localhost:8088/artworks?id=${artworkId}`).then((res) => res.json())
+// }
 
 export const createArtwork = (artwork) => {
     return fetch(

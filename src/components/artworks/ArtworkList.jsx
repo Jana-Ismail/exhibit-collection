@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { getUserById } from "../../services/userService"
-import { getArtworksByUserId } from "../../services/artworkService.js"
+import { getAllArtworks, getArtworksByUserId } from "../../services/artworkService.js"
 import { Artwork } from "./Artwork"
 import "./Artwork.css"
 import { Link, useNavigate } from "react-router-dom"
@@ -8,21 +8,31 @@ import { Link, useNavigate } from "react-router-dom"
 
 export const ArtworkList = ({ currentUser }) => {
     const [artworks, setArtworks] = useState([])
+    const [filteredArtworks, setFilteredArtworks] = useState([])
     const navigate = useNavigate()
 
     const getAndSetArtworks = () => {
-        getArtworksByUserId(currentUser?.id).then(artworksArr => {
+        getAllArtworks().then(artworksArr => {
             setArtworks(artworksArr)
+            
         })
     }
+    
+
+    // const getAndSetArtworks = () => {
+    //     getArtworksByUserId(currentUser?.id).then(artworksArr => {
+    //         setArtworks(artworksArr)
+    //     })
+    // }
 
     useEffect(() => {
         getAndSetArtworks()
     }, [])
 
     useEffect(() => {
-        getAndSetArtworks()
-    }, [currentUser])
+        const currentUserArtworks = (artworks.filter(artwork => currentUser.id === artwork.userId))
+        setFilteredArtworks(currentUserArtworks)
+    }, [artworks, currentUser])
 
     return (
         <>
@@ -39,7 +49,7 @@ export const ArtworkList = ({ currentUser }) => {
                 
             </div>
             <div className="artwork-collection">
-                {artworks.map(artwork => {
+                {filteredArtworks.map(artwork => {
                     return (
                         <Link to={`/collection/${artwork.id}`} >
                             <Artwork artwork={artwork} key={artwork.id} />

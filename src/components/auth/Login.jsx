@@ -36,7 +36,7 @@ export const Login = () => {
           <h1>Exhibit Collection</h1>
           <h2>Please sign in</h2>
           <fieldset>
-            <div className="form-group">
+            <div className="form-group-login">
               <input
                 type="email"
                 value={email}

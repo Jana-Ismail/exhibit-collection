@@ -2,7 +2,8 @@
     background-color: var(--woodLight);
     background-color: var(--primary);
     background-color: #f9a361;
-    background-color: #faaf75;
+    /* background-color: #faaf75; */
+    /* background-color: #d46815; */
     margin: 7px;
     padding: 7px 20px;
     color: white;
@@ -10,6 +11,8 @@
 
 .user:hover {
     background-color: #f9a361;
+    background-color: #d46815;
+
 }
 
 .edit-btn {

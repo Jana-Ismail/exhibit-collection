@@ -59,7 +59,7 @@ export const ArtworkForm = ( {currentUser} ) => {
         }
     }, [mediumOption])
 
-    const handleSave = (event) => {
+    const handleSubmit = (event) => {
         event.preventDefault()
 
         const newArtwork = {
@@ -86,12 +86,29 @@ export const ArtworkForm = ( {currentUser} ) => {
 
     return (
         <div>
-            <h2>Create New Artwork</h2>
-            <form>
+            <h2 className="artwork-form-header">Create New Artwork</h2>
+            <form onSubmit={handleSubmit}>
                 <fieldset>
+                    <div className="form-group image-url">
+                        <label>Image URL</label>
+                        <input
+                            className="form-control"
+                            type="text"
+                            placeholder="URL of new artwork image"
+                            value={artwork.imageUrl}
+                            onChange={(event) => {
+                                const artworkCopy = { ...artwork }
+                                artworkCopy.imageUrl = event.target.value
+                                setArtwork(artworkCopy)
+                            }}
+                        />
+                    </div>
+                </fieldset>
+                <fieldset className="form-select-elements">
                         <div className="form-group">
                             <label>Genre</label>
-                            <select 
+                            <select
+                                className="form-select-element" 
                                 id="artwork-genre"
                                 required
                                 onChange={(event) => {
@@ -106,11 +123,10 @@ export const ArtworkForm = ( {currentUser} ) => {
                                 <option value="5">Other</option>
                             </select>
                         </div>
-                    </fieldset>
-                    <fieldset>
                         <div className="form-group">
                             <label>Medium</label>
                             <select
+                                className="form-select-element" 
                                 required 
                                 id="artwork-medium"
                                 onChange={(event) => {
@@ -126,25 +142,8 @@ export const ArtworkForm = ( {currentUser} ) => {
                                 <option value="6">Other</option>
                             </select>
                         </div>
-                    </fieldset>
-                <fieldset>
-                    <div className="form-group">
-                    <label>Image URL</label>
-                        <input 
-                            required
-                            className="form-control"
-                            type="text"
-                            placeholder="URL of new artwork image"
-                            value={artwork.imageUrl}
-                            onChange={(event) => {
-                                const artworkCopy = { ...artwork }
-                                artworkCopy.imageUrl = event.target.value
-                                setArtwork(artworkCopy)
-                            }}
-                        />
-                    </div>
                 </fieldset>
-                <fieldset>
+                <fieldset className="form-select-elements">
                     <div className="form-group">
                     <label>Title</label>
                         <input 
@@ -159,8 +158,6 @@ export const ArtworkForm = ( {currentUser} ) => {
                             }}
                         />
                     </div>
-                </fieldset>
-                <fieldset>
                     <div className="form-group">
                     <label>Artist</label>
                         <input 
@@ -176,7 +173,7 @@ export const ArtworkForm = ( {currentUser} ) => {
                         />
                     </div>
                 </fieldset>
-                <fieldset>
+                <fieldset className="form-select-elements">
                     <div className="form-group">
                     <label>Nationality</label>
                         <input 
@@ -191,8 +188,6 @@ export const ArtworkForm = ( {currentUser} ) => {
                             }}
                         />
                     </div>
-                </fieldset>
-                <fieldset>
                     <div className="form-group">
                     <label>Year</label>
                         <input 
@@ -208,8 +203,8 @@ export const ArtworkForm = ( {currentUser} ) => {
                         />
                     </div>
                 </fieldset>
-                <fieldset required>
-                    <div className="form-group">
+                <fieldset className="form-select-elements">
+                    <div className="form-group artwork-locationViewed">
                         <label>Location Viewed</label>
                         <input
                             required 
@@ -225,8 +220,8 @@ export const ArtworkForm = ( {currentUser} ) => {
                         />
                     </div>
                 </fieldset>
-                <fieldset>
-                    <div className="form-group">
+                <fieldset className="form-select-elements">
+                    <div className="form-group artwork-dateViewed">
                         <label>Date Viewed</label>
                         <input
                             required 
@@ -243,7 +238,7 @@ export const ArtworkForm = ( {currentUser} ) => {
                     </div>
                 </fieldset>
                 <fieldset>
-                    <div className="form-group">
+                    <div className="form-group artwork-cityViewed">
                         <label>City Viewed</label>
                         <input 
                             className="form-control"
@@ -259,14 +254,16 @@ export const ArtworkForm = ( {currentUser} ) => {
                     </div>
                 </fieldset>
                 <fieldset>
-                    <div className="form-group">
+                    <div className="form-group artwork-notes">
                         <label>Notes</label>
-                        <textarea></textarea>
+                        <textarea rows="6"></textarea>
                     </div>
                 </fieldset>
-                <fieldset>
-                    <button className="submit-btn" onClick={handleSave}>Create Artwork</button>  
+                <fieldset className="form-group submit">
+                    <button type="submit" className="submit-btn">Create Artwork</button>  
+
                 </fieldset>
+                
             </form>
         </div>
 

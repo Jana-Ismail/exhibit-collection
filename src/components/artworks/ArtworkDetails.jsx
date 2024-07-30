@@ -28,7 +28,32 @@ export const ArtworkDetails = ( {currentUser} ) => {
 
     return (
         <div>
-            <h1>Artwork Details</h1>
+            <div className="artwork-details-header">
+                <h1>Artwork Details</h1>
+                <div className="btn-container">
+                    {currentUser.id === artwork.userId ? (
+                        <div>
+                            <button 
+                                className="edit-btn"
+                                onClick={(event) => {
+                                    navigate(`/collection/${artworkId}/edit`)
+                                }}
+                            >
+                                Edit
+                            </button>
+                            <button 
+                                className="delete-btn-icon"
+                                onClick={handleDelete}
+                            >
+                                <i className="fa-solid fa-trash-can"></i>
+                            </button>
+                        </div>
+                    ) : (
+                        ""
+                    )}
+                </div>
+
+            </div>
             <div className="artwork-details-container">
                 <div className="artwork-details-section">
                     <img 
@@ -41,7 +66,7 @@ export const ArtworkDetails = ( {currentUser} ) => {
                     <div className="artwork-details">
                         <div className="artwork-detail">
                             <span className="detail-description">Title : </span>
-                            {artwork.title}
+                            {artwork.title ? (artwork.title) : ("Untitled")}
                         </div>
                         <div className="artwork-detail">
                             <span className="detail-description">Artist : </span>
@@ -83,28 +108,6 @@ export const ArtworkDetails = ( {currentUser} ) => {
                         </div>
                     </div>
                 </div>
-            </div>
-            <div className="btn-container">
-                {currentUser.id === artwork.userId ? (
-                    <div>
-                        <button 
-                            className="edit-btn"
-                            onClick={(event) => {
-                                navigate(`/collection/${artworkId}/edit`)
-                            }}
-                        >
-                            Edit
-                        </button>
-                        <button 
-                            className="delete-btn-icon"
-                            onClick={handleDelete}
-                        >
-                            <i className="fa-solid fa-trash-can"></i>
-                        </button>
-                    </div>
-                ) : (
-                    ""
-                )}
             </div>
         </div>
     )

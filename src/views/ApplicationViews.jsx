@@ -47,7 +47,7 @@ export const ApplicationViews = () => {
                     <Route path="create" element={<ArtworkForm currentUser={currentUser} />} />
                 </Route>
                 <Route path="users">
-                    <Route index element={<UserList />} />
+                    <Route index element={<UserList currentUser={currentUser}/>} />
                     <Route path=":userId" element={<UserDetails currentUser={currentUser}/>}>
                         {/* <Route path=":userArtworkId" element={<ArtworkDetails />}/> */}
                     </Route>

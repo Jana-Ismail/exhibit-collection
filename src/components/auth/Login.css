@@ -40,11 +40,13 @@
   
   form {
     margin: 3rem 5rem;
-    border: 1px solid var(--outline);
+    /* border: 1px solid var(--outline); */
     border-radius: 10px;
-    padding: 1rem 0rem 0rem 1rem;
-    box-shadow: 1px 2px 5px lightgray;
+    padding: 1rem;
+    box-shadow: 1px 2px 5px rgb(207, 202, 202);
     background-color: var(--offWhite);
+    background-color: rgb(147, 154, 156);
+    background-color: rgb(224, 234, 236);
   }
   
   fieldset {
@@ -63,7 +65,7 @@
   }
   
   .form-group {
-    margin-right: 1rem;
+    margin: 0 1rem;
     display: flex;
     flex-direction: column;
   }

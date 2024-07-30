@@ -55,7 +55,7 @@ export const Register = (props) => {
         <h1>Exhibit Collection</h1>
         <h2>Please Register</h2>
         <fieldset>
-          <div className="form-group">
+          <div className="form-group-register">
             <input
               onChange={updateUser}
               type="text"
@@ -68,7 +68,7 @@ export const Register = (props) => {
           </div>
         </fieldset>
         <fieldset>
-          <div className="form-group">
+          <div className="form-group-register">
             <input
               onChange={updateUser}
               type="email"

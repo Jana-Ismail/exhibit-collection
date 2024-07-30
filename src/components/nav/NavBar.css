@@ -4,7 +4,7 @@
     display: flex;
     flex-wrap: nowrap;
     background-color: var(--wood);
-    background-color: rgb(13, 55, 13);
+    background-color: var(--darkGreen);
     margin: 0;
     width: 100%;
     padding: 0.5rem;

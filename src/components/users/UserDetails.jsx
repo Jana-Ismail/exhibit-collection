@@ -1,10 +1,10 @@
-import { useParams, useNavigate } from "react-router-dom"
+import { useParams, useNavigate, Link } from "react-router-dom"
 import "./Users.css"
 import { useEffect, useState } from "react"
 import { getUserById } from "../../services/userService"
-import { ArtworkList } from "../artworks/ArtworkList"
 import { getArtworksByUserId } from "../../services/artworkService"
-import { Artwork } from "../artworks/Artwork"
+
+
 
 export const UserDetails = ({currentUser}) => {
     const {userId} = useParams()
@@ -47,20 +47,23 @@ export const UserDetails = ({currentUser}) => {
             <div className="profile-detail">Name: {user.name}</div>
             <div>Hometown: {user.hometown}</div>
             <div>Favorite Artist: {user.favoriteArtist}</div>
-            <div>Collection Title: {user.collectionTitle}</div>
+            {currentUser ? (                <div>Collection Title: {user.collectionTitle}</div>
+) : ("") 
+            }
+            
             {userId ? (
                 <div className="artwork-collection">
                     <div>
                     <h2>{user.name}'s Collection</h2>
                     {artworks.map((artwork) => {
                     return (
-                        <>
-                            <img
-                                className="artwork-image" 
-                                src="../dataVisualizations/MondrianBlackSquare.jpg"
-                                alt="A picture of Mondrian's Black Square" 
-                            />
-                        </>
+                        <div className="artwork-collection-card">
+                                <img
+                                    className="artwork-image" 
+                                    src={artwork.imageUrl}
+                                    alt={`An image of ${artwork.artist}'s ${artwork.title}`} 
+                                />
+                        </div>
                         
                         )
                     }

@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom"
 import "./Artwork.css"
 import { useEffect, useState } from "react"
-import { getArtworkById } from "../../services/artworkService.js"
+import { deleteArtwork, getArtworkById } from "../../services/artworkService.js"
 
 export const ArtworkDetails = ( {currentUser} ) => {
     const { artworkId } = useParams()
@@ -11,7 +11,6 @@ export const ArtworkDetails = ( {currentUser} ) => {
     const getAndSetArtwork = () => {
         getArtworkById(artworkId).then((data) => {
             const artworkObj = data[0]
-            // console.log(artworkObj)
             setArtwork(artworkObj)
         })
 
@@ -19,10 +18,12 @@ export const ArtworkDetails = ( {currentUser} ) => {
 
     useEffect(() => {
         getAndSetArtwork()
-    }, [])
+    }, [currentUser, artworkId])
 
     const handleDelete = () => {
-        
+        deleteArtwork(artworkId).then(() => {
+            navigate("/collection")
+        })
     }
 
     return (
@@ -56,11 +57,11 @@ export const ArtworkDetails = ( {currentUser} ) => {
                         </div>
                         <div className="artwork-detail">
                             <span className="detail-description">Medium : </span>
-                            {artwork.medium}
+                            {artwork.medium?.type}
                         </div>
                         <div className="artwork-detail">
                             <span className="detail-description">Genre : </span>
-                            {artwork.genre}
+                            {artwork.genre?.type}
                         </div>
                     </div>
                     <div className="viewing-details">

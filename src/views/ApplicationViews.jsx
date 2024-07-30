@@ -32,7 +32,7 @@ export const ApplicationViews = () => {
                     </>
                 }
             >
-                <Route index element={<h1>Welcome to my blank app!</h1>} />
+                <Route index element={<h1>Welcome to Exhibit Collection</h1>} />
                 <Route path="collection">
                     <Route index element={<ArtworkList currentUser={currentUser}/>} />
                     <Route path=":artworkId">
@@ -43,7 +43,9 @@ export const ApplicationViews = () => {
                 </Route>
                 <Route path="users">
                     <Route index element={<UserList />} />
-                    <Route path=":userId" element={<UserDetails currentUser={currentUser}/>} />
+                    <Route path=":userId" element={<UserDetails currentUser={currentUser}/>}>
+                        {/* <Route path=":userArtworkId" element={<ArtworkDetails />}/> */}
+                    </Route>
                 </Route>
                 <Route path="profile">
                     <Route index element={<UserDetails currentUser={currentUser} />} />

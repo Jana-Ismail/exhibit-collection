@@ -2,12 +2,22 @@
     background-color: var(--woodLight);
     background-color: var(--primary);
     background-color: #f9a361;
+    background-color: #faaf75;
     margin: 7px;
     padding: 7px 20px;
     color: white;
 }
 
+.user:hover {
+    background-color: #f9a361;
+}
+
 .edit-btn {
     /* background-color: rgb(65, 125, 65); */
     background-color: darkblue;
+}
+
+.user-collection {
+    display: flex;
+    gap: 5px;
 }

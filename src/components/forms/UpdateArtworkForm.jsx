@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import "./Form.css"
-import { createArtwork, getAllGenres, getAllMediums, getArtworkById, updateArtwork } from "../../services/artworkService"
+import { getAllGenres, getAllMediums, getArtworkById, updateArtwork } from "../../services/artworkService"
 import { useNavigate, useParams } from "react-router-dom"
 
 export const UpdateArtworkForm = () => {

@@ -1,5 +1,5 @@
 export const getAllArtworks = () => {
-    return fetch(`http://localhost:8088/artworks`).then(res => res.json())
+    return fetch(`http://localhost:8088/artworks?_expand=genre&_expand=medium`).then(res => res.json())
 }
 
 

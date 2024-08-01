@@ -8,7 +8,6 @@ import { getArtworksByUserId } from "../../services/artworkService"
 
 export const UserDetails = ({currentUser}) => {
     const {userId} = useParams()
-    console.log(userId)
     const [user, setUser] = useState({})
     const [artworks, setArtworks] = useState([])
 

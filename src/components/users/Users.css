@@ -3,6 +3,8 @@
     background-color: var(--primary);
     background-color: #f9a361;
     background-color: rgb(40, 164, 125);
+    background-color: rgb(83, 211, 170);
+
     /* background-color: #faaf75; */
     /* background-color: #d46815; */
     margin: 7px;
@@ -15,6 +17,7 @@
     background-color: #d46815;
     background-color: rgb(160, 192, 198);
     background-color: rgb(83, 211, 170);
+    background-color: rgb(40, 164, 125);
 
 
 }

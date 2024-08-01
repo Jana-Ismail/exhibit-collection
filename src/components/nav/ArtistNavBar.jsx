@@ -1,12 +1,15 @@
 import { useNavigate, Link } from "react-router-dom"
 import "./NavBar.css"
 
-export const NavBar = () => {
+export const ArtistNavBar = () => {
     const navigate = useNavigate()
     return (
         <ul className="navbar">
             <li className="navbar-item">
                 <Link to="/collection" className="navbar-link">Collection</Link>
+            </li>
+            <li className="navbar-item">
+                <Link to="/personal-artwork" className="navbar-link">My Work</Link>
             </li>
             <li className="navbar-item">
                 <Link to="/collection/create" className="navbar-link">+ Artwork</Link>

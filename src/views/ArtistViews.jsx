@@ -1,5 +1,5 @@
 import { Outlet, Route, Routes } from "react-router-dom"
-import { UserNavBar } from "../components/nav/UserNavBar.jsx"
+import { ArtistNavBar } from "../components/nav/ArtistNavBar.jsx"
 import { ArtworkList } from "../components/artworks/ArtworkList.jsx"
 import { ArtworkDetails } from "../components/artworks/ArtworkDetails.jsx"
 import { UpdateArtworkForm } from "../components/forms/UpdateArtworkForm.jsx"
@@ -8,14 +8,14 @@ import { UserList } from "../components/users/UserList.jsx"
 import { UserDetails } from "../components/users/UserDetails.jsx"
 import { UserForm } from "../components/forms/UserForm.jsx"
 
-export const UserViews = ({ currentUser }) => {
+export const ArtistViews = ({ currentUser }) => {
     return (
         <Routes>
             <Route
                 path="/"
                 element={
                     <>
-                        <UserNavBar />
+                        <ArtistNavBar />
                         <Outlet />
                     </>
                 }
@@ -34,6 +34,7 @@ export const UserViews = ({ currentUser }) => {
                     </Route>
                     <Route path="create" element={<ArtworkForm currentUser={currentUser} />} />
                 </Route>
+                <Route path="personal-artwork" element={<div>My Artwork</div>}/>
                 <Route path="users">
                     <Route index element={<UserList currentUser={currentUser}/>} />
                     <Route path=":userId" element={<UserDetails currentUser={currentUser}/>}>

@@ -15,23 +15,6 @@ export const ArtworkList = ({ currentUser }) => {
     const [searchTerm, setSearchTerm] = useState("")
     const navigate = useNavigate()
 
-                // <select
-                //     className="filter-options"
-                //     onChange={(event) => {
-                //         setSelectedFilterOption(parseInt(event.target.value))
-                //     }}
-                // >
-                //     <option value="0"></option>
-                //     <option value="1">Museum/Gallery Viewed</option>
-                //     <option value="2">City Viewed</option>
-                //     <option value="3">Date Viewed</option>
-                //     <option value="4">Artist</option>
-                //     <option value="5">Genre</option>
-                //     <option value="6">Medium</option>
-                //     <option value="7">Nationality</option>
-                //     <option value="8">Notes</option>
-                // </select>
-
     const getAndSetArtworks = () => {
         getAllArtworks().then(artworksArr => {
             setArtworks(artworksArr)
@@ -43,11 +26,13 @@ export const ArtworkList = ({ currentUser }) => {
             setGenres(genresArr)
         })
     }
+    
     // const getAndSetArtworks = () => {
     //     getArtworksByUserId(currentUser?.id).then(artworksArr => {
     //         setArtworks(artworksArr)
     //     })
     // }
+
     useEffect(() => {
         getAndSetArtworks()
         getAndSetAllGenres()

@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react"
-// import { UserViews } from "./UserViews.jsx"
 import { Outlet, Route, Routes } from "react-router-dom"
 import { NavBar } from "../components/nav/NavBar.jsx"
 import { ArtworkList } from "../components/artworks/ArtworkList.jsx"
@@ -60,10 +59,4 @@ export const ApplicationViews = () => {
         </Routes>
     )
  
-    }
-    
-    // return currentUser.isArtist ? (
-         //   <UserViews currentUser={currentUser} />
-  //   ) : (
-      //   <UserViews currentUser={currentUser} />
-      //   )
+}

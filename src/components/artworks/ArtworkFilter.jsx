@@ -5,8 +5,6 @@ export const ArtworkFilter = ( {
     setSelectedFilterOption, 
     setSearchTerm, 
     setGenreOption} ) => {
-    // const [selectedFilterOption, setSelectedFilterOption] = useState(0)
-    // const [searchTerm, setSearchTerm] = useState("")
 
     return (
         <div className="filter-bar">
@@ -55,20 +53,7 @@ export const ArtworkFilter = ( {
                         </select>
                         )
                     }
-                </div>
-                {/* {selectedFilterOption !== 3 ? (
-                    <input
-                        type="text"
-                        placeholder="Search Artworks"
-                        onChange={(event) => {setSearchTerm(event.target.value)}}
-                    />
-                ) : (
-                    <input
-                        type="date"
-                        onChange={(event) => {setSearchTerm(event.target.value)}}
-                    />
-                )} */}
-                
+                </div>         
             </div>
         </div>
     )

@@ -8,10 +8,6 @@ export const UpdateArtworkForm = () => {
     const navigate = useNavigate()
     
     const [artwork, setArtwork] = useState({})
-    // const [genres, setGenres] = useState([])
-    // const [mediums, setMediums] = useState([])
-    // const [genreOption, setGenreOption] = useState(0)
-    // const [mediumOption, setMediumOption] = useState(0)
 
     const getAndSetArtwork = () => {
         getArtworkById(artworkId).then((artworkObj) => {
@@ -36,24 +32,6 @@ export const UpdateArtworkForm = () => {
         getAndSetGenres()
         getAndSetMediums()
     }, [artworkId])
-
-    // useEffect(() => {
-    //     if (genreOption) {
-    //         const selectedGenre = genres.filter(genre => genre.id === genreOption)
-    //         const artworkCopy = {...artwork}
-    //         artworkCopy.genre = selectedGenre[0].type
-    //         setArtwork(artworkCopy)
-    //     }
-    // }, [genreOption])
-
-    // useEffect(() => {
-    //     if (mediumOption) {
-    //         const selectedMedium = mediums.filter(medium => medium.id === mediumOption)
-    //         const artworkCopy = {...artwork}
-    //         artworkCopy.medium = selectedMedium[0].type
-    //         setArtwork(artworkCopy)
-    //     }
-    // }, [mediumOption])
 
     const handleSave = (event) => {
         event.preventDefault()

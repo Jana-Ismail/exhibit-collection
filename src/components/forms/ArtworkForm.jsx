@@ -265,6 +265,7 @@ export const ArtworkForm = ( {currentUser} ) => {
                 </fieldset>
                 
             </form>
+        {/* <input type="file" accept="image/*" /> */}
         </div>
 
     )

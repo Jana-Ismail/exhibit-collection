@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { getAllUsers } from "../../services/userService"
 import { Link } from "react-router-dom"
 
-export const UserList = ( { currentUser } ) => {
+export const UserList = ( { currentUser, currentArtistUser } ) => {
     const [users, setUsers] = useState([])
 
     const getAndSetUsers = () => {
@@ -19,7 +19,7 @@ export const UserList = ( { currentUser } ) => {
         <div>
             <h2>Users</h2>
             {users.map((user) => {
-                if (user.id !== currentUser.id) {
+                if (user.id !== currentUser?.id || user.id !== currentArtistUser?.id) {
                     return(
                         <Link to={`/users/${user.id}`}>
                             <div className="user" key={user.id}>{user.name}</div>

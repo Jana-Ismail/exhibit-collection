@@ -39,7 +39,7 @@ export const ArtworkList = ({ currentUser }) => {
     }, [])
 
     useEffect(() => {
-        const currentUserArtworks = (artworks.filter(artwork => currentUser.id === artwork.userId))
+        const currentUserArtworks = (artworks.filter(artwork => currentUser?.id === artwork.userId))
         setFilteredArtworks(currentUserArtworks)
     }, [artworks, currentUser])
 
@@ -76,7 +76,7 @@ export const ArtworkList = ({ currentUser }) => {
     }, [searchTerm, genreOption, selectedFilterOption])
 
     return (
-        <>
+        <div className="collection-list">
             <div className="collection-header">
                 <h2 className="collection-title">My Collection</h2>
                 <ArtworkFilter
@@ -99,12 +99,12 @@ export const ArtworkList = ({ currentUser }) => {
                 {filteredArtworks.map(artwork => {
                     return (
                         <Link to={`/collection/${artwork.id}`} >
-                            <Artwork artwork={artwork} key={artwork.id} />
+                            <Artwork artwork={artwork} currentUser={currentUser} key={artwork.id} />
                         </Link>
                     )
                 })}
             </div>
-        </>
+        </div>
         
     )
 }

@@ -30,3 +30,8 @@
   .navbar-link:hover {
     color: var(--primary);
   }
+
+  .fa-house {
+    color: white;
+    margin-right: 5px;
+  }

@@ -47,8 +47,11 @@ export const UserDetails = ({currentUser}) => {
             <div className="profile-detail">Name: {user.name}</div>
             <div>Hometown: {user.hometown}</div>
             <div>Favorite Artist: {user.favoriteArtist}</div>
-            {currentUser ? (                <div>Collection Title: {user.collectionTitle}</div>
-) : ("") 
+            {currentUser ? (                
+                <div>Collection Title: {user.collectionTitle}</div>
+            ) : (
+                ""
+            ) 
             }
             
             {userId ? (

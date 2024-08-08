@@ -20,12 +20,12 @@ export const UserViews = ({ currentUser }) => {
                     </>
                 }
             >
-                <Route index element={
+                {/* <Route index element={
                     <div>
                         <h1>Welcome to Exhibit Collection</h1>
                         <div>Start building your collection!</div>
                     </div>
-                } />
+                } /> */}
                 <Route path="collection">
                     <Route index element={<ArtworkList currentUser={currentUser}/>} />
                     <Route path=":artworkId">

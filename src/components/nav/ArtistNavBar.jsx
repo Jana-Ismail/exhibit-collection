@@ -11,11 +11,11 @@ export const ArtistNavBar = () => {
             <li className="navbar-item">
                 <Link to="/personal-artwork" className="navbar-link">My Work</Link>
             </li>
-            <li className="navbar-item">
+            {/* <li className="navbar-item">
                 <Link to="/collection/create" className="navbar-link">+ Artwork</Link>
-            </li>
+            </li> */}
             <li className="navbar-item">
-                <Link to="/users" className="navbar-link">Users</Link>
+                <Link to="/users" className="navbar-link">Browse</Link>
             </li>
             <li className="navbar-item">
                 <Link to="/profile" className="navbar-link">Profile</Link>

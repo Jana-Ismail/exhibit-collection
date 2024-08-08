@@ -17,16 +17,25 @@ export const UserList = ( { currentUser } ) => {
 
     return (
         <div>
-            <h2>Users</h2>
-            {users.map((user) => {
-                if (user.id !== currentUser.id) {
-                    return(
-                        <Link to={`/users/${user.id}`}>
-                            <div className="user" key={user.id}>{user.name}</div>
-                        </Link>
-                    )
-                }
-            })}
+            <div className="user-list-container">
+            <h2 className="user-list-header">Users</h2>
+            <div className="user-cards">
+                {users.map((user) => {
+                    if (user.id !== currentUser.id) {
+                        return(
+                            <Link to={`/users/${user.id}`}>
+                                <div className="user-card" key={user.id}>
+                                    <div className="user-detail">{user.name}</div>
+                                    <div className="user-detail">{user.hometown}</div>
+                                </div>
+                                
+                            </Link>
+                        )
+                    }
+                })}
+            </div>
+            </div>
         </div>
+
     )
 }

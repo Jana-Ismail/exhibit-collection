@@ -1,9 +1,35 @@
-.user {
+.user-list-container {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+}
+
+.user-list-header {
+    display: flex; 
+    justify-content: left;
+    margin: 20px 30px;
+    border-bottom: 2px solid var(--darkText);
+}
+
+.user-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.user-card {
+    width: 10rem;
+    height: 10rem;
     background-color: var(--woodLight);
     background-color: var(--primary);
     background-color: #f9a361;
-    background-color: rgb(40, 164, 125);
-    background-color: rgb(83, 211, 170);
+    /* background-color: rgb(40, 164, 125); */
+    /* background-color: rgb(83, 211, 170); */
+    background-color: rgb(160, 192, 198);
+    background-color: rgb(129, 192, 203);
+    background-color: rgb(111, 135, 127);
+    background-color: rgb(131, 186, 168);
+
 
     /* background-color: #faaf75; */
     /* background-color: #d46815; */
@@ -12,12 +38,12 @@
     color: white;
 }
 
-.user:hover {
+.user-card:hover {
     background-color: #f9a361;
-    background-color: #d46815;
-    background-color: rgb(160, 192, 198);
+    /* background-color: #d46815; */
+    /* background-color: rgb(160, 192, 198); */
     background-color: rgb(83, 211, 170);
-    background-color: rgb(40, 164, 125);
+    /* background-color: rgb(40, 164, 125); */
 
 
 }
@@ -32,3 +58,4 @@
     display: flex;
     gap: 5px;
 }
+

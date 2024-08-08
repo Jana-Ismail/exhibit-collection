@@ -5,6 +5,9 @@ export const ArtistNavBar = () => {
     const navigate = useNavigate()
     return (
         <ul className="navbar">
+            <li>
+                <Link to="/"><i className="fa-solid fa-house navbar-item home-icon"></i></Link>
+            </li>
             <li className="navbar-item">
                 <Link to="/collection" className="navbar-link">Collection</Link>
             </li>

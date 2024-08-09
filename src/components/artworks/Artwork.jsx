@@ -1,8 +1,19 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import "./Artwork.css"
 
 export const Artwork = ({ artwork }) => {
     const [isHovered, setIsHovered] = useState(false)
+    const [isFavorited, setIsFavorited] = useState(false)
+
+    useEffect(() => {
+        setIsFavorited(artwork.isFavorited)
+    }, [artwork])
+
+    const handleFavoriteIconClick = (event) => {
+        event.stopPropagation()
+        setIsFavorited(!isFavorited)
+    }
+
     return (
         <div className="artwork-collection-card">
             <div 
@@ -26,11 +37,11 @@ export const Artwork = ({ artwork }) => {
                                     {/* <i className="fa-solid fa-trash-can"></i> */}
                                     <i className="fa-solid fa-trash"></i>
                                 </div>
-                                <div className="favorite-icon">
+                                <div className="favorite-icon" onClick={handleFavoriteIconClick}>
                                     {artwork.isFavorited ? (
-                                        <i className="fa-solid fa-star" onclick={() => {console.log("clicked!")}}></i>
+                                        <i className="fa-solid fa-star" onClick={handleFavoriteIconClick}></i>
                                     ) : (
-                                        <i className="fa-regular fa-star"></i>
+                                        <i className="fa-regular fa-star" onClick={handleFavoriteIconClick}></i>
                                     )}
                                     
                                     

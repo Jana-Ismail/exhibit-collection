@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import "./Artwork.css"
 
 export const Artwork = ({ artwork }) => {
@@ -10,15 +11,33 @@ export const Artwork = ({ artwork }) => {
     }, [artwork])
 
     const handleFavoriteIconClick = (event) => {
-        event.stopPropagation()
         setIsFavorited(!isFavorited)
+
+        const updatedArtwork = {
+            id: artworkId,
+            userId: artwork.userId,
+            isFavorited: artwork.isFavorited,
+            imageUrl: artwork.imageUrl,
+            title: artwork.title,
+            artist: artwork.artist,
+            nationality: artwork.nationality,
+            year: artwork.year,
+            genreId: artwork.genreId,
+            mediumId: artwork.mediumId,
+            locationViewed: artwork.locationViewed,
+            dateViewed: artwork.dateViewed,
+            cityViewed: artwork.cityViewed,
+            notes: artwork.notes,
+            dateAdded: artwork.dateAdded,
+        }
+
+        updatedArtwork(updatedArtwork)
     }
 
     return (
         <div className="artwork-collection-card">
             <div 
                 className="artwork-card-image"
-                
             > 
                 {artwork.imageUrl ? (
                     <div className="image-container"
@@ -32,7 +51,7 @@ export const Artwork = ({ artwork }) => {
                             
                         />
                         {isHovered && (
-                            <>
+                            <div className="image-hover-icons">
                                 <div className="delete-icon">
                                     {/* <i className="fa-solid fa-trash-can"></i> */}
                                     <i className="fa-solid fa-trash"></i>
@@ -46,7 +65,7 @@ export const Artwork = ({ artwork }) => {
                                     
                                     
                                 </div>
-                            </>
+                            </div>
                         )}
                     </div> 
                     

@@ -75,30 +75,46 @@ export const ArtworkList = ({ currentUser }) => {
 
     }, [searchTerm, genreOption, selectedFilterOption])
 
+    const handleFavoritesToggle = () => {
+        
+    }
+
     return (
         <>
             <div className="collection-header">
-                <h2 className="collection-title">My Collection</h2>
+                <div>
+                    <h2 className="collection-title">My Collection</h2>
+                    <button 
+                        className="add-artwork-btn"
+                        onClick={() => {
+                            navigate("/collection/create")
+                        }}
+                    >
+                        Add Artwork
+                    </button>
+                    <button 
+                        className="btn-favorite"
+                        onClick={handleFavoritesToggle}
+                    >Favorites</button>
+                </div>
                 <ArtworkFilter
                     selectedFilterOption={selectedFilterOption} 
                     setSelectedFilterOption={setSelectedFilterOption}
                     setSearchTerm={setSearchTerm}
                     setGenreOption={setGenreOption}
                 />
-                <button 
-                    className="add-artwork-btn"
-                    onClick={() => {
-                        navigate("/collection/create")
-                    }}
-                >
-                    Add Artwork
-                </button>
                 
             </div>
             <div className="artwork-collection">
                 {filteredArtworks.map(artwork => {
                     return (
-                        <Link to={`/collection/${artwork.id}`} >
+                        <Link to={`/collection/${artwork.id}`} onClick={(event) => {
+                            if (!event.target.closest(".favorite-icon")) {
+                                navigate(`/collection/${artwork.id}`)
+                            } else {
+                                event.preventDefault()
+                            }
+                        }}>
                             <Artwork artwork={artwork} key={artwork.id} />
                         </Link>
                     )

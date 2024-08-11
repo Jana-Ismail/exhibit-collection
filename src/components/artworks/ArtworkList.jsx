@@ -8,6 +8,8 @@ import { ArtworkFilter } from "./ArtworkFilter.jsx"
 
 export const ArtworkList = ({ currentUser }) => {
     const [artworks, setArtworks] = useState([])
+    const [showFavoritesOnly, setShowFavoritesOnly] = useState(false)
+    const [allArtworks, setAllArtworks] = useState([])
     const [genres, setGenres] = useState([])
     const [filteredArtworks, setFilteredArtworks] = useState([])
     const [selectedFilterOption, setSelectedFilterOption] = useState(0)
@@ -40,8 +42,17 @@ export const ArtworkList = ({ currentUser }) => {
 
     useEffect(() => {
         const currentUserArtworks = (artworks.filter(artwork => currentUser.id === artwork.userId))
-        setFilteredArtworks(currentUserArtworks)
+        setAllArtworks(currentUserArtworks)
     }, [artworks, currentUser])
+
+    useEffect(() => {
+        if (showFavoritesOnly) {
+            const favoritedArtworks = artworks.filter(artwork => artwork.isFavorited)
+            setFilteredArtworks(favoritedArtworks)
+        } else {
+            setFilteredArtworks(allArtworks)
+        }
+    }, [showFavoritesOnly, artworks, allArtworks])
 
     useEffect(() => {
         if (selectedFilterOption === 1) {
@@ -75,10 +86,6 @@ export const ArtworkList = ({ currentUser }) => {
 
     }, [searchTerm, genreOption, selectedFilterOption])
 
-    const handleFavoritesToggle = () => {
-        
-    }
-
     return (
         <>
             <div className="collection-header">
@@ -92,10 +99,20 @@ export const ArtworkList = ({ currentUser }) => {
                     >
                         Add Artwork
                     </button>
+                </div>
+                <div>
                     <button 
-                        className="btn-favorite"
-                        onClick={handleFavoritesToggle}
-                    >Favorites</button>
+                        className="btn-all-artworks"
+                        onClick={() => setShowFavoritesOnly(false)}
+                    >
+                        All
+                    </button>
+                    <button 
+                        className="btn-favorites"
+                        onClick={() => setShowFavoritesOnly(true)}
+                    >
+                        Favorites
+                    </button>
                 </div>
                 <ArtworkFilter
                     selectedFilterOption={selectedFilterOption} 
@@ -109,13 +126,14 @@ export const ArtworkList = ({ currentUser }) => {
                 {filteredArtworks.map(artwork => {
                     return (
                         <Link to={`/collection/${artwork.id}`} onClick={(event) => {
-                            if (!event.target.closest(".favorite-icon")) {
+                            if (!event.target.closest(".favorite-icon") &&
+                                !event.target.closest(".delete-icon")) {
                                 navigate(`/collection/${artwork.id}`)
                             } else {
                                 event.preventDefault()
                             }
                         }}>
-                            <Artwork artwork={artwork} key={artwork.id} />
+                            <Artwork artwork={artwork} key={artwork.id} getAndSetArtworks={getAndSetArtworks}/>
                         </Link>
                     )
                 })}

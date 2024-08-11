@@ -1,38 +1,43 @@
 import { useEffect, useState } from "react"
-import { useEffect, useState } from "react"
 import "./Artwork.css"
+import { updateArtwork } from "../../services/artworkService"
 
-export const Artwork = ({ artwork }) => {
+export const Artwork = ({ artwork, getAndSetArtworks }) => {
     const [isHovered, setIsHovered] = useState(false)
-    const [isFavorited, setIsFavorited] = useState(false)
+    const [isFavoritedSelection, setIsFavoritedSelection] = useState(false)
 
     useEffect(() => {
-        setIsFavorited(artwork.isFavorited)
+        setIsFavoritedSelection(artwork.isFavorited)
     }, [artwork])
 
     const handleFavoriteIconClick = (event) => {
-        setIsFavorited(!isFavorited)
-
+        setIsFavoritedSelection(!artwork.isFavorited)
+            
         const updatedArtwork = {
-            id: artworkId,
-            userId: artwork.userId,
-            isFavorited: artwork.isFavorited,
-            imageUrl: artwork.imageUrl,
-            title: artwork.title,
-            artist: artwork.artist,
-            nationality: artwork.nationality,
-            year: artwork.year,
-            genreId: artwork.genreId,
-            mediumId: artwork.mediumId,
-            locationViewed: artwork.locationViewed,
-            dateViewed: artwork.dateViewed,
-            cityViewed: artwork.cityViewed,
-            notes: artwork.notes,
-            dateAdded: artwork.dateAdded,
+                id: artwork.id,
+                userId: artwork.userId,
+                isFavorited: !isFavoritedSelection,
+                imageUrl: artwork.imageUrl,
+                title: artwork.title,
+                artist: artwork.artist,
+                nationality: artwork.nationality,
+                year: artwork.year,
+                genreId: artwork.genreId,
+                mediumId: artwork.mediumId,
+                locationViewed: artwork.locationViewed,
+                dateViewed: artwork.dateViewed,
+                cityViewed: artwork.cityViewed,
+                notes: artwork.notes,
+                dateAdded: artwork.dateAdded,
         }
 
-        updatedArtwork(updatedArtwork)
+        updateArtwork(updatedArtwork)
+
     }
+
+    useEffect(() => {
+        getAndSetArtworks()
+    }, [isFavoritedSelection])
 
     return (
         <div className="artwork-collection-card">

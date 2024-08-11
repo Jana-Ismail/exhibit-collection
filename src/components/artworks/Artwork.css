@@ -58,8 +58,8 @@
     /* border: 3px solid darkblue; */
     /* border: 3px solid rgb(13, 55, 13); */
     cursor: pointer;
-    max-width: 265px;
-    max-height: 265px;
+    /* max-width: 265px; */
+    /* max-height: 265px; */
 }
 
 .artwork-image-detail {
@@ -146,4 +146,6 @@
 }
 
 /* <i class="fa-light fa-star"></i> */
-
+.btn-all-artworks {
+    background-color: var(--woodLight);
+}

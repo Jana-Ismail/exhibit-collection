@@ -27,6 +27,7 @@ export const UserList = ( { currentUser } ) => {
                                 <div className="user-card" key={user.id}>
                                     <div className="user-detail">{user.name}</div>
                                     <div className="user-detail">{user.hometown}</div>
+                                    <div className="user-detail">{user.favoriteArtist}</div>
                                 </div>
                                 
                             </Link>

@@ -43,20 +43,26 @@ export const UserDetails = ({currentUser}) => {
 
     return (
         <div className="profile">
-            <h2>User Details</h2>
-            <div className="profile-detail">Name: {user.name}</div>
-            <div>Hometown: {user.hometown}</div>
-            <div>Favorite Artist: {user.favoriteArtist}</div>
-            {currentUser ? (                
+            {/* <h2>User Details</h2> */}
+            <div className="profile-details">
+                <div className="profile-detail">Name: {user.name}</div>
+                <div>Hometown: {user.hometown}</div>
+                <div>Favorite Artist: {user.favoriteArtist}</div>
+            {!userId ? (                
                 <div>Collection Title: {user.collectionTitle}</div>
             ) : (
                 ""
             ) 
             }
+            </div>
             
             {userId ? (
                 <div className="artwork-collection-section">
-                    <h2>{user.name}'s Collection</h2>
+                    {user.collectionTitle && user.collectionTitle.toLowerCase() !== "My Collection" ? (
+                        <h2 className="artwork-collection-section-header">{user.name}'s Collection</h2>
+                    ) : (
+                        ""
+                    )}
                     <div className="artwork-collection">
                     {artworks.map((artwork) => {
                     return (

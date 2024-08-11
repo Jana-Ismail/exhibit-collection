@@ -1,24 +1,48 @@
 import { useEffect, useState } from "react"
 import "./Artwork.css"
+import { updateArtwork } from "../../services/artworkService"
 
-export const Artwork = ({ artwork }) => {
+export const Artwork = ({ artwork, getAndSetArtworks }) => {
     const [isHovered, setIsHovered] = useState(false)
-    const [isFavorited, setIsFavorited] = useState(false)
+    const [isFavoritedSelection, setIsFavoritedSelection] = useState(false)
 
     useEffect(() => {
-        setIsFavorited(artwork.isFavorited)
+        setIsFavoritedSelection(artwork.isFavorited)
     }, [artwork])
 
     const handleFavoriteIconClick = (event) => {
-        event.stopPropagation()
-        setIsFavorited(!isFavorited)
+        setIsFavoritedSelection(!artwork.isFavorited)
+            
+        const updatedArtwork = {
+                id: artwork.id,
+                userId: artwork.userId,
+                isFavorited: !isFavoritedSelection,
+                imageUrl: artwork.imageUrl,
+                title: artwork.title,
+                artist: artwork.artist,
+                nationality: artwork.nationality,
+                year: artwork.year,
+                genreId: artwork.genreId,
+                mediumId: artwork.mediumId,
+                locationViewed: artwork.locationViewed,
+                dateViewed: artwork.dateViewed,
+                cityViewed: artwork.cityViewed,
+                notes: artwork.notes,
+                dateAdded: artwork.dateAdded,
+        }
+
+        updateArtwork(updatedArtwork)
+
     }
+
+    useEffect(() => {
+        getAndSetArtworks()
+    }, [isFavoritedSelection])
 
     return (
         <div className="artwork-collection-card">
             <div 
                 className="artwork-card-image"
-                
             > 
                 {artwork.imageUrl ? (
                     <div className="image-container"
@@ -32,7 +56,7 @@ export const Artwork = ({ artwork }) => {
                             
                         />
                         {isHovered && (
-                            <>
+                            <div className="image-hover-icons">
                                 <div className="delete-icon">
                                     {/* <i className="fa-solid fa-trash-can"></i> */}
                                     <i className="fa-solid fa-trash"></i>
@@ -46,7 +70,7 @@ export const Artwork = ({ artwork }) => {
                                     
                                     
                                 </div>
-                            </>
+                            </div>
                         )}
                     </div> 
                     

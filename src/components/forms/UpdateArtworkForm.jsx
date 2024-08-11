@@ -39,7 +39,7 @@ export const UpdateArtworkForm = () => {
         const updatedArtwork = {
             id: artworkId,
             userId: artwork.userId,
-            isFavorited: false,
+            isFavorited: artwork.isFavorited,
             imageUrl: artwork.imageUrl,
             title: artwork.title,
             artist: artwork.artist,

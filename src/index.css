@@ -110,3 +110,9 @@ button {
 .btn-info:hover {
   background-color: #71a500;
 }
+
+.btn-favorites {
+  background-color: #e5a000;
+  background-color: rgb(129, 192, 203);
+  background-color: rgb(93, 206, 226);
+}

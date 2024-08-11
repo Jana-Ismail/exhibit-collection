@@ -18,7 +18,7 @@
 }
 
 .user-card {
-    width: 10rem;
+    width: 20rem;
     height: 10rem;
     background-color: var(--woodLight);
     background-color: var(--primary);
@@ -26,9 +26,9 @@
     /* background-color: rgb(40, 164, 125); */
     /* background-color: rgb(83, 211, 170); */
     background-color: rgb(160, 192, 198);
-    background-color: rgb(129, 192, 203);
-    background-color: rgb(111, 135, 127);
-    background-color: rgb(131, 186, 168);
+    /* background-color: rgb(129, 192, 203); */
+    /* background-color: rgb(111, 135, 127); */
+    /* background-color: rgb(131, 186, 168); */
 
 
     /* background-color: #faaf75; */
@@ -43,6 +43,8 @@
     /* background-color: #d46815; */
     /* background-color: rgb(160, 192, 198); */
     background-color: rgb(83, 211, 170);
+    background-color: rgb(129, 192, 203);
+
     /* background-color: rgb(40, 164, 125); */
 
 
@@ -59,3 +61,17 @@
     gap: 5px;
 }
 
+.profile-details {
+    margin: 30px auto;
+    background: rgb(13, 67, 67);
+    background-color: rgb(224, 234, 236);
+    padding: 30px;
+    border-radius: 4px;
+    width: 25rem;
+    line-height: 2.5;
+    font-size: larger;
+}
+
+.artwork-collection-section-header {
+    margin: 0 30px;
+}

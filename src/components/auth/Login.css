@@ -63,6 +63,10 @@
     border: 1px solid var(--outline);
     border-radius: 0.25rem;
   }
+
+  .form-input {
+    width: 20rem;
+  }
   
   .form-group {
     margin: 0 1rem;

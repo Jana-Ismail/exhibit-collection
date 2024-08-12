@@ -97,7 +97,7 @@ export const UserForm = ( { currentUser } ) => {
                 </div>
             </fieldset>
             <fieldset>
-                <div className="form-group">
+                <div className="button-container">
                     <button className="save-btn" onClick={handleSave}>Save Profile</button>
                 </div>
             </fieldset>

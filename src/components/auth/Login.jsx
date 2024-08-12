@@ -41,7 +41,7 @@ export const Login = () => {
                 type="email"
                 value={email}
                 onChange={(evt) => set(evt.target.value)}
-                className="form-control"
+                className="form-control form-input"
                 placeholder="Email address"
                 required
                 autoFocus

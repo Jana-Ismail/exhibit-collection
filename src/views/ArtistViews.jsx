@@ -32,11 +32,11 @@ export const ArtistViews = ({ currentUser }) => {
                     </>
                 }
             >
-                <Route index element={<></>
-                    // <div>
-                    //     <h1>Welcome to Exhibit Collection</h1>
-                    //     <div>Start building your collection!</div>
-                    // </div>
+                <Route index element={
+                    <div>
+                        <h1>Welcome to Exhibit Collection</h1>
+                        <div>Start building your collection!</div>
+                    </div>
                 } />
                 <Route path="collection">
                     <Route index element={<ArtworkList currentUser={currentUser}/>} />
@@ -57,6 +57,7 @@ export const ArtistViews = ({ currentUser }) => {
                     <Route index element={<UserDetails currentUser={currentUser} />} />
                     <Route path="edit" element={<UserForm currentUser={currentUser} />} />
                 </Route>
+                <Route path="/" element={<></>}></Route>
             </Route>
         </Routes>
     )

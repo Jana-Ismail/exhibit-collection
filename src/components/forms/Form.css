@@ -95,7 +95,14 @@
    margin-bottom: 20px;
 }
 
+
 .profile-update {
    display: flex;
    flex-wrap: wrap;
+}
+
+.update-profile-container {
+   min-width: 0;
+   max-width: 50rem;
+   margin: 20px auto;
 }

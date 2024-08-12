@@ -20,11 +20,6 @@
   .form-login > h2 {
     text-align: center;
     font-size: 1.5rem;
-    margin: 10px auto;
-  }
-
-  .form-login > button {
-    margin: 0 auto;
   }
   
   .form-login > fieldset > input[type="email"] {
@@ -67,7 +62,6 @@
     font-size: 1rem;
     border: 1px solid var(--outline);
     border-radius: 0.25rem;
-    width: 20rem;
   }
   
   .form-group {
@@ -85,7 +79,7 @@
     outline: 2px solid transparent;
     outline-offset: 2px;
   }
-
+  
   .sign-in-btn, .register-btn {
     background-color: rgb(69, 94, 99);
     text-align: center;

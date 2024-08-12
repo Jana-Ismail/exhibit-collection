@@ -63,10 +63,11 @@ export const UpdateArtworkForm = () => {
         <div>
             <h2>Update Artwork</h2>
             <form>
-                <fieldset>
+                <fieldset className="form-select-elements">
                         <div className="form-group">
                             <label>Genre</label>
                             <select 
+                                className="form-select-element"
                                 id="artwork-genre"
                                 required
                                 value={artwork.genreId}
@@ -84,11 +85,10 @@ export const UpdateArtworkForm = () => {
                                 <option value="5">Other</option>
                             </select>
                         </div>
-                    </fieldset>
-                    <fieldset>
                         <div className="form-group">
                             <label>Medium</label>
                             <select
+                                className="form-select-element"
                                 required 
                                 id="artwork-medium"
                                 value={artwork.mediumId}
@@ -108,7 +108,7 @@ export const UpdateArtworkForm = () => {
                             </select>
                         </div>
                     </fieldset>
-                <fieldset>
+                <fieldset className="form-select-elements">
                     <div className="form-group">
                     <label>Title</label>
                         <input 
@@ -123,8 +123,6 @@ export const UpdateArtworkForm = () => {
                             }}
                         />
                     </div>
-                </fieldset>
-                <fieldset>
                     <div className="form-group">
                     <label>Artist</label>
                         <input 
@@ -140,7 +138,7 @@ export const UpdateArtworkForm = () => {
                         />
                     </div>
                 </fieldset>
-                <fieldset>
+                <fieldset className="form-select-elements">
                     <div className="form-group">
                     <label>Nationality</label>
                         <input 
@@ -155,8 +153,6 @@ export const UpdateArtworkForm = () => {
                             }}
                         />
                     </div>
-                </fieldset>
-                <fieldset>
                     <div className="form-group">
                     <label>Year</label>
                         <input 
@@ -172,8 +168,8 @@ export const UpdateArtworkForm = () => {
                         />
                     </div>
                 </fieldset>
-                <fieldset>
-                    <div className="form-group">
+                <fieldset className="form-select-elements">
+                    <div className="form-group artwork-locationViewed">
                         <label>Location Viewed</label>
                         <input
                             required 
@@ -189,8 +185,8 @@ export const UpdateArtworkForm = () => {
                         />
                     </div>
                 </fieldset>
-                <fieldset>
-                    <div className="form-group">
+                <fieldset className="form-select-elements">
+                    <div className="form-group artwork-dateViewed">
                         <label>Date Viewed</label>
                         <input
                             required 
@@ -205,8 +201,8 @@ export const UpdateArtworkForm = () => {
                         />
                     </div>
                 </fieldset>
-                <fieldset>
-                    <div className="form-group">
+                <fieldset className="form-select-elements">
+                    <div className="form-group artwork-cityViewed">
                         <label>City Viewed</label>
                         <input 
                             className="form-control"
@@ -222,7 +218,7 @@ export const UpdateArtworkForm = () => {
                     </div>
                 </fieldset>
                 <fieldset>
-                    <div className="form-group">
+                    <div className="form-group artwork-notes">
                         <label>Notes</label>
                         <textarea
                             className="form-control"

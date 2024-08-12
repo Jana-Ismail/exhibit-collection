@@ -18,16 +18,20 @@
 }
 
 .user-card {
-    width: 20rem;
+    width: 15rem;
     height: 10rem;
     background-color: var(--woodLight);
     background-color: var(--primary);
-    background-color: #f9a361;
+    /* background-color: #f9a361; */
     /* background-color: rgb(40, 164, 125); */
     /* background-color: rgb(83, 211, 170); */
     background-color: rgb(160, 192, 198);
-    /* background-color: rgb(129, 192, 203); */
-    /* background-color: rgb(111, 135, 127); */
+    background-color: rgb(129, 192, 203);
+    background-color: rgb(111, 135, 127);
+    background-color: rgb(157, 213, 195);
+    background-color: #a4997f;
+    background-color: #b4ab96;
+
     /* background-color: rgb(131, 186, 168); */
 
 
@@ -44,7 +48,7 @@
     /* background-color: rgb(160, 192, 198); */
     background-color: rgb(83, 211, 170);
     background-color: rgb(129, 192, 203);
-
+    background-color: #ab9665;
     /* background-color: rgb(40, 164, 125); */
 
 

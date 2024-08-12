@@ -3,12 +3,23 @@ import { ArtistNavBar } from "../components/nav/ArtistNavBar.jsx"
 import { ArtworkList } from "../components/artworks/ArtworkList.jsx"
 import { ArtworkDetails } from "../components/artworks/ArtworkDetails.jsx"
 import { UpdateArtworkForm } from "../components/forms/UpdateArtworkForm.jsx"
-import { ArtworkForm } from "../components/forms/ArtworkForm.jsx"
+import { CreateArtworkForm } from "../components/forms/CreateArtworkForm.jsx"
 import { UserList } from "../components/users/UserList.jsx"
 import { UserDetails } from "../components/users/UserDetails.jsx"
 import { UserForm } from "../components/forms/UserForm.jsx"
+import { useEffect, useState } from "react"
+import { getArtistByUserId } from "../services/artistUserService.js"
 
 export const ArtistViews = ({ currentUser }) => {
+    const [currentArtistUser, setCurrentArtistUser] = useState(0)
+
+    useEffect(() => {
+        getArtistByUserId(currentUser.id).then(data => {
+            const artistUserObj = data[0]
+            setCurrentArtistUser(artistUserObj)
+        })
+    }, [currentUser])
+
     return (
         <Routes>
             <Route
@@ -32,7 +43,7 @@ export const ArtistViews = ({ currentUser }) => {
                         <Route index element={<ArtworkDetails currentUser={currentUser}/>} />
                         <Route path="edit" element={<UpdateArtworkForm />}/>
                     </Route>
-                    <Route path="create" element={<ArtworkForm currentUser={currentUser} />} />
+                    <Route path="create" element={<CreateArtworkForm currentArtistUser={currentArtistUser} currentUser={currentUser} />} />
                 </Route>
                 <Route path="personal-artwork" element={<div>My Artwork</div>}/>
                 <Route path="users">

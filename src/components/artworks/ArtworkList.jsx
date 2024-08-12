@@ -47,7 +47,7 @@ export const ArtworkList = ({ currentUser }) => {
 
     useEffect(() => {
         if (showFavoritesOnly) {
-            const favoritedArtworks = artworks.filter(artwork => artwork.isFavorited)
+            const favoritedArtworks = allArtworks.filter(artwork => artwork.isFavorited)
             setFilteredArtworks(favoritedArtworks)
         } else {
             setFilteredArtworks(allArtworks)
@@ -89,7 +89,7 @@ export const ArtworkList = ({ currentUser }) => {
     return (
         <>
             <div className="collection-header">
-                <div>
+                <div className="collection-header-group title-group">
                     <h2 className="collection-title">My Collection</h2>
                     <button 
                         className="add-artwork-btn"
@@ -100,7 +100,7 @@ export const ArtworkList = ({ currentUser }) => {
                         Add Artwork
                     </button>
                 </div>
-                <div>
+                <div className="artworks-toggle">
                     <button 
                         className="btn-all-artworks"
                         onClick={() => setShowFavoritesOnly(false)}
@@ -113,14 +113,13 @@ export const ArtworkList = ({ currentUser }) => {
                     >
                         Favorites
                     </button>
-                </div>
                 <ArtworkFilter
                     selectedFilterOption={selectedFilterOption} 
                     setSelectedFilterOption={setSelectedFilterOption}
                     setSearchTerm={setSearchTerm}
                     setGenreOption={setGenreOption}
                 />
-                
+                </div>
             </div>
             <div className="artwork-collection">
                 {filteredArtworks.map(artwork => {

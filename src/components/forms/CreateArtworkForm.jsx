@@ -1,6 +1,11 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import "./Form.css"
+import { createArtistArtwork, createArtwork, getAllGenres, getAllMediums } from "../../services/artworkService"
+import { useNavigate } from "react-router-dom"
 
-export const ArtworkForm = ({}) => {
+export const CreateArtworkForm = ( {currentUser, currentArtistUser} ) => {
+    const navigate = useNavigate()
+    
     const [artwork, setArtwork] = useState({
         imageUrl: "",
         title: "",
@@ -14,6 +19,146 @@ export const ArtworkForm = ({}) => {
         cityViewed: "",
         notes: "",
     })
+
+    const [artistArtwork, setArtistArtwork] = useState({
+        artistId: 0,
+        title: "",
+        nationality: "",
+        year: "",
+        genreId: 0,
+        mediumId: 0,
+        isForSale: false,
+        isPurchased: false,
+        notes: "",
+        dateAdded: "",
+        notes: ""
+    })
+
+    const [genres, setGenres] = useState([])
+    const [mediums, setMediums] = useState([])
+    const [genreOption, setGenreOption] = useState(0)
+    const [mediumOption, setMediumOption] = useState(0)
+    const [imageData, setImageData] = useState(null)
+    const [isPersonalArtwork, setIsPersonalArtwork] = useState(false)
+
+    const getAndSetGenres = () => {
+        getAllGenres().then((genresArr) => {
+            setGenres(genresArr)
+        })
+    }
+
+    const getAndSetMediums = () => {
+        getAllMediums().then(mediumsArr => {
+            setMediums(mediumsArr)
+        })
+    }
+
+    useEffect(() => {
+        getAndSetGenres()
+        getAndSetMediums()
+    }, [])
+
+    useEffect(() => {
+        if (genreOption) {
+            const selectedGenre = genres.filter(genre => genre.id === genreOption)
+            
+            if (!isPersonalArtwork) {
+                const artworkCopy = {...artwork}
+                artworkCopy.genreId = selectedGenre[0].type
+                setArtwork(artworkCopy)
+            } else {
+                const artistArtworkCopy = {...artistArtwork}
+                artistArtworkCopy.genreId = selectedGenre[0].type
+                setArtistArtwork(artistArtworkCopy)
+            }
+        }
+    }, [genreOption])
+
+    useEffect(() => {
+        if (mediumOption) {
+            const selectedMedium = mediums.filter(medium => medium.id === mediumOption)
+            
+            if (!isPersonalArtwork) {
+                const artworkCopy = {...artwork}
+                artworkCopy.mediumId = selectedMedium[0].type
+                setArtwork(artworkCopy)
+            } else {
+                const artistArtworkCopy = {...artistArtwork}
+                artistArtworkCopy.mediumId = selectedMedium[0].type
+                setArtistArtwork(artistArtworkCopy)
+            }
+        }
+    }, [mediumOption])
+
+    const handleSubmit = (event) => {
+        event.preventDefault()
+
+        let imageUrlData = ""
+        if (imageData) {
+            imageUrlData = imageData
+        }
+
+
+        const newArtwork = {
+            userId: currentUser.id,
+            isFavorited: false,
+            // imageUrl: artwork.imageUrl,
+            imageUrl: imageUrlData,
+            title: artwork.title,
+            artist: artwork.artist,
+            nationality: artwork.nationality,
+            year: artwork.year,
+            genreId: genreOption,
+            mediumId: artwork.mediumId,
+            locationViewed: artwork.locationViewed,
+            dateViewed: artwork.dateViewed,
+            cityViewed: artwork.cityViewed,
+            notes: artwork.notes,
+            dateAdded: new Date(),
+        }
+
+        createArtwork(newArtwork).then(() => {
+            navigate("/collection")
+        })
+    }
+
+    const handleArtistArtworkSubmit = (event) => {
+        event.preventDefault()
+
+        let imageUrlData = ""
+        if (imageData) {
+            imageUrlData = imageData
+        }
+
+        const newArtistArtwork = {
+            artistId: currentArtistUser.id,
+            imageUrl: imageUrlData,
+            title: artistArtwork.title,
+            nationality: artistArtwork.nationality,
+            year: artistArtwork.year,
+            genreId: genreOption,
+            mediumId: mediumOption,
+            isForSale: false,
+            isPurchased: false,
+            notes: artistArtwork.notes,
+            dateAdded: new Date()
+        }
+
+        createArtistArtwork(newArtistArtwork).then(
+            navigate("/personal-artwork")
+        )
+    }
+
+    const handleFileChange = (event) => {
+        const file = event.target.files[0]
+        if (file) {
+            const reader = new FileReader()
+            reader.onloadend = () => {
+                setImageData(reader.result)
+            }
+            reader.readAsDataURL(file)
+        }
+    }
 
     return (
         <div>
@@ -35,7 +180,99 @@ export const ArtworkForm = ({}) => {
                             <img src={imageData} alt="Artwork Preview" className="image-preview"/>
                     </div>
                 )}
-            
+            {isPersonalArtwork ? (
+                <form onSubmit={handleArtistArtworkSubmit}>
+                    <fieldset className="form-select-elements">
+                        <div className="form-group">
+                            <label>Genre</label>
+                            <select
+                                className="form-select-element" 
+                                id="artwork-genre"
+                                required
+                                onChange={(event) => {
+                                    setGenreOption(parseInt(event.target.value))
+                                }}
+                            >
+                                <option value="0">Select a Genre</option>
+                                <option value="1">Landscape</option>
+                                <option value="2">Portrait</option>
+                                <option value="3">Abstract</option>
+                                <option value="4">Still Life</option>
+                                <option value="5">Other</option>
+                            </select>
+                        </div>
+                        <div className="form-group">
+                            <label>Medium</label>
+                            <select
+                                className="form-select-element" 
+                                required 
+                                id="artwork-medium"
+                                onChange={(event) => {
+                                    setMediumOption(parseInt(event.target.value))
+                                }}
+                            >
+                                <option value="0">Select a Medium</option>
+                                <option value="1">Oil Paint</option>
+                                <option value="2">Acrylic Paint</option>
+                                <option value="3">Charcoal</option>
+                                <option value="4">Ink</option>
+                                <option value="5">Mixed Media</option>
+                                <option value="6">Other</option>
+                            </select>
+                        </div>
+                </fieldset>
+                <fieldset className="form-select-elements">
+                    <div className="form-group">
+                    <label>Title</label>
+                        <input 
+                            className="form-control"
+                            required
+                            type="text"
+                            placeholder="Title of artwork"
+                            value={artistArtwork.title}
+                            onChange={(event) => {
+                                const artistArtworkCopy = { ...artistArtwork }
+                                artistArtworkCopy.title = event.target.value
+                                setArtistArtwork(artistArtworkCopy)
+                            }}
+                        />
+                    </div>
+                <div className="form-group">
+                    <label>Year</label>
+                        <input 
+                            className="form-control"
+                            required
+                            type="text"
+                            placeholder="Year(s) created"
+                            value={artistArtwork.year}
+                            onChange={(event) => {
+                                const artistArtworkCopy = { ...artistArtwork }
+                                artistArtworkCopy.year = event.target.value
+                                setArtistArtwork(artistArtworkCopy)
+                            }}
+                            />
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <div className="form-group artwork-notes">
+                        <label>Notes</label>
+                        <textarea 
+                            rows="6"
+                            onChange={(event) => {
+                                const artistArtworkCopy = {...artistArtwork}
+                                artistArtworkCopy.notes = event.target.value
+                                setArtistArtwork(artistArtworkCopy)
+                            }}
+                        ></textarea>
+                    </div>
+                </fieldset>
+                <fieldset className="form-group submit">
+                    <button type="submit" className="submit-btn">Create Artwork</button>
+                </fieldset>
+            </form>
+
+            ) : (
+                <>
             <form onSubmit={handleSubmit}>
                 {/* <fieldset>
                     <div className="form-group image-url">
@@ -214,7 +451,9 @@ export const ArtworkForm = ({}) => {
                 </fieldset>
                 
             </form>
-        </div>
+            </>
+            )}
+            </div>
 
     )
 }

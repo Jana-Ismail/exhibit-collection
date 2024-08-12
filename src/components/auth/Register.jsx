@@ -80,7 +80,7 @@ export const Register = (props) => {
           </div>
         </fieldset>
         <fieldset>
-          <div className="form-group">
+          <div className="align-button">
             <label>
               <input
                 onChange={(evt) => {
@@ -96,8 +96,8 @@ export const Register = (props) => {
           </div>
         </fieldset>
         <fieldset>
-          <div className="form-group">
-            <button className="login-btn btn-info" type="submit">
+          <div className="align-button">
+            <button className="register-btn" type="submit">
               Register
             </button>
           </div>

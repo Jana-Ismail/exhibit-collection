@@ -17,7 +17,7 @@ export const ArtworkFilter = ( {
                             setSelectedFilterOption(parseInt(event.target.value))
                         }}
                     >
-                        <option value="0" disabled></option>
+                        <option value="0"></option>
                         <option value="1">Gallery Viewed</option>
                         <option value="2">City Viewed</option>
                         <option value="3">Date Viewed</option>

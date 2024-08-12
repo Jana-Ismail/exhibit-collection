@@ -45,11 +45,11 @@ export const UserDetails = ({currentUser}) => {
         <div className="profile">
             {/* <h2>User Details</h2> */}
             <div className="profile-details">
-                <div className="profile-detail">Name: {user.name}</div>
-                <div>Hometown: {user.hometown}</div>
-                <div>Favorite Artist: {user.favoriteArtist}</div>
+                <div className="profile-detail"><span className="profile-description">Name: </span>{user.name}</div>
+                <div className="profile-detail"><span className="profile-description">Hometown: </span><span className="profile-info">{user.hometown}</span></div>
+                <div className="profile-detail"><span className="profile-description">Favorite Artist: </span>{user.favoriteArtist}</div>
             {!userId ? (                
-                <div>Collection Title: {user.collectionTitle}</div>
+                <div className="profile-detail"><span className="profile-description">Collection Title: </span>{user.collectionTitle}</div>
             ) : (
                 ""
             ) 
@@ -80,9 +80,11 @@ export const UserDetails = ({currentUser}) => {
                     </div>
                 </div>
             ) : (
-                <button className="edit-btn" onClick={() => {
-                    navigate("/profile/edit")
-                }}>Edit Profile</button>
+                <div className="button-align">
+                    <button className="edit-btn" onClick={() => {
+                        navigate("/profile/edit")
+                    }}>Edit Profile</button>
+                </div>
             )}
             
         </div>

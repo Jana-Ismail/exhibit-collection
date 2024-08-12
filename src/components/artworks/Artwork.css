@@ -8,7 +8,7 @@
 .artwork-collection {
     display: flex;
     flex-wrap: wrap;
-    width: 90%;
+    width: 100%;
     gap: 20px;
     justify-content: center;
     margin: 20px;
@@ -123,6 +123,10 @@
     gap: 5px;
 }
 
+.filter-by-group label {
+    margin: 0 5px;
+}
+
 .filter-input-group input {
     padding-left: 10px;
 }
@@ -173,4 +177,14 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.filter-options {
+    background-color: rgb(228, 224, 224);
+    border: none;
+    padding-left: 2px;
+}
+
+.filter-options:hover {
+    cursor: pointer;
 }

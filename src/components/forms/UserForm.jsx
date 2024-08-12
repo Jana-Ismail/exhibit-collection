@@ -37,39 +37,38 @@ export const UserForm = ( { currentUser } ) => {
     }
 
     return (
-        <form className="profile-update">
-            <h2>Update Profile</h2>
-            <fieldset>
-                <div className="form-group">
-                    <label>Name:</label>
-                    <input 
-                        className="form-control-update" 
-                        type="text"
-                        value={user.name}
-                        onChange={(event) => {
-                            const userCopy = { ...user }
-                            userCopy.name = event.target.value
-                            setUser(userCopy)
-                        }}
-                    />
-                </div>
-            </fieldset>
-            <fieldset>
-                <div className="form-group">
-                    <label>Hometown:</label>
-                    <input 
-                        className="form-control"
-                        type="text" 
-                        value={user.hometown}
-                        onChange={(event) => {
-                            const userCopy = {...user}
-                            userCopy.hometown = event.target.value
-                            setUser(userCopy)
-                        }}
-                    />
-                </div>
-            </fieldset>
-            <fieldset>
+        <>
+        <h2 className="artwork-form-header">Update Profile</h2>
+        <form className="update-profile-container">
+                <fieldset className="form-select-elements">
+                    <div className="form-group">
+                        <label>Name:</label>
+                        <input 
+                            className="form-control" 
+                            type="text"
+                            value={user.name}
+                            onChange={(event) => {
+                                const userCopy = { ...user }
+                                userCopy.name = event.target.value
+                                setUser(userCopy)
+                            }}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label>Hometown:</label>
+                        <input 
+                            className="form-control"
+                            type="text" 
+                            value={user.hometown}
+                            onChange={(event) => {
+                                const userCopy = {...user}
+                                userCopy.hometown = event.target.value
+                                setUser(userCopy)
+                            }}
+                        />
+                    </div>
+                </fieldset>
+            <fieldset className="form-select-elements">
                 <div className="form-group">
                     <label>Favorite Artist:</label>
                     <input 
@@ -83,8 +82,6 @@ export const UserForm = ( { currentUser } ) => {
                         }}
                     />
                 </div>
-            </fieldset>
-            <fieldset>
                 <div className="form-group">
                     <label>Collection Title:</label>
                     <input 
@@ -105,5 +102,6 @@ export const UserForm = ( { currentUser } ) => {
                 </div>
             </fieldset>
         </form>
+        </>
     )
 }

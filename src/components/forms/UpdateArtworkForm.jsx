@@ -110,21 +110,6 @@ export const UpdateArtworkForm = () => {
                     </fieldset>
                 <fieldset>
                     <div className="form-group">
-                    <label>Image URL</label>
-                        <input 
-                            className="form-control"
-                            type="text"
-                            value={artwork.imageUrl}
-                            onChange={(event) => {
-                                const artworkCopy = { ...artwork }
-                                artworkCopy.imageUrl = event.target.value
-                                setArtwork(artworkCopy)
-                            }}
-                        />
-                    </div>
-                </fieldset>
-                <fieldset>
-                    <div className="form-group">
                     <label>Title</label>
                         <input 
                             className="form-control"

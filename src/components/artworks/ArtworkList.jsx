@@ -56,17 +56,37 @@ export const ArtworkList = ({ currentUser }) => {
 
     useEffect(() => {
         if (selectedFilterOption === 1) {
-            const foundArtworks = artworks.filter(artwork => artwork.locationViewed.toLowerCase().includes(searchTerm.toLowerCase()))
-            setFilteredArtworks(foundArtworks)
+            if (showFavoritesOnly) {
+                const foundArtworks = filteredArtworks.filter(artwork => artwork.locationViewed.toLowerCase().includes(searchTerm.toLowerCase()))
+                setFilteredArtworks(foundArtworks)
+            } else {
+                const foundArtworks = allArtworks.filter(artwork => artwork.locationViewed.toLowerCase().includes(searchTerm.toLowerCase()))
+                setFilteredArtworks(foundArtworks)
+            }
         } else if (selectedFilterOption === 2) {
-            const foundArtworks = artworks.filter(artwork => artwork.cityViewed.toLowerCase().includes(searchTerm.toLowerCase()))
-            setFilteredArtworks(foundArtworks)
+            if (showFavoritesOnly) {
+                const foundArtworks = filteredArtworks.filter(artwork => artwork.cityViewed.toLowerCase().includes(searchTerm.toLowerCase()))
+                setFilteredArtworks(foundArtworks)
+            } else {
+                const foundArtworks = allArtworks.filter(artwork => artwork.cityViewed.toLowerCase().includes(searchTerm.toLowerCase()))
+                setFilteredArtworks(foundArtworks)
+            }
         } else if (selectedFilterOption === 3) {
-            const foundArtworks = artworks.filter(artwork => artwork.dateViewed.includes(searchTerm))
+            if (showFavoritesOnly) {
+                const foundArtworks = filteredArtworks.filter(artwork => artwork.dateViewed.includes(searchTerm))
+                setFilteredArtworks(foundArtworks)
+            } else {
+                const foundArtworks = allArtworks.filter(artwork => artwork.dateViewed.includes(searchTerm))
             setFilteredArtworks(foundArtworks)
+            }
         } else if (selectedFilterOption === 4) {
-            const foundArtworks = artworks.filter(artwork => artwork.artist.toLowerCase().includes(searchTerm.toLowerCase()))
-            setFilteredArtworks(foundArtworks)
+            if (showFavoritesOnly) {
+                const foundArtworks = filteredArtworks.filter(artwork => artwork.artist.toLowerCase().includes(searchTerm.toLowerCase()))
+                setFilteredArtworks(foundArtworks)
+            } else {
+                const foundArtworks = allArtworks.filter(artwork => artwork.artist.toLowerCase().includes(searchTerm.toLowerCase()))
+                setFilteredArtworks(foundArtworks)
+            }
         } else if (selectedFilterOption === 5) {
             // This code is working to filter on first click, but not working if the option is changed again
             // Thinking maybe need to define this functionality in its own function, then call the function in a useEffect when the genreOption state changes?
@@ -77,14 +97,24 @@ export const ArtworkList = ({ currentUser }) => {
             // This will be same as genre select functionality once I figure that out
             
         } else if (selectedFilterOption === 7) {
-            const foundArtworks = artworks.filter(artwork => artwork.nationality.toLowerCase().includes(searchTerm.toLowerCase()))
+            if (showFavoritesOnly) {
+                const foundArtworks = filteredArtworks.filter(artwork => artwork.nationality.toLowerCase().includes(searchTerm.toLowerCase()))
+                setFilteredArtworks(foundArtworks)
+            } else {
+                const foundArtworks = allArtworks.filter(artwork => artwork.nationality.toLowerCase().includes(searchTerm.toLowerCase()))
             setFilteredArtworks(foundArtworks)
-        } else {
-            const foundArtworks = artworks.filter(artwork => artwork.notes.toLowerCase().includes(searchTerm.toLowerCase()))
+            }
+        } else if (selectedFilterOption === 8) {
+            if (showFavoritesOnly) {
+                const foundArtworks = filteredArtworks.filter(artwork => artwork.notes.toLowerCase().includes(searchTerm.toLowerCase()))
+                setFilteredArtworks(foundArtworks)
+            } else {
+                const foundArtworks = allArtworks.filter(artwork => artwork.notes.toLowerCase().includes(searchTerm.toLowerCase()))
             setFilteredArtworks(foundArtworks)
+            }
         }
 
-    }, [searchTerm, genreOption, selectedFilterOption])
+    }, [searchTerm, genreOption, selectedFilterOption, artworks, allArtworks, showFavoritesOnly])
 
     return (
         <>

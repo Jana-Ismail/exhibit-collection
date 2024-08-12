@@ -25,12 +25,14 @@ export const UserList = ( { currentUser } ) => {
                         return(
                             <Link to={`/users/${user.id}`}>
                                 <div className="user-card" key={user.id}>
-                                    <div className="user-detail">{user.name}</div>
+                                    <div className="user-detail">
+                                        {user.name} {user.isArtist && (
+                                            <span>| Artist</span>
+                                        )}
                                     <div className="user-detail">{user.hometown}</div>
-                                    <div className="user-detail">{user.favoriteArtist}</div>
-
-                                    {user.isArtist && (
-                                        <div>Artist</div>
+                                    </div>
+                                    {user.favoriteArtist && (
+                                        <div className="user-detail"> Favorite Artist | {user.favoriteArtist}</div>
                                     )}
                                 </div>
                                 

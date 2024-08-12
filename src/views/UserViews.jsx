@@ -3,7 +3,7 @@ import { UserNavBar } from "../components/nav/UserNavBar.jsx"
 import { ArtworkList } from "../components/artworks/ArtworkList.jsx"
 import { ArtworkDetails } from "../components/artworks/ArtworkDetails.jsx"
 import { UpdateArtworkForm } from "../components/forms/UpdateArtworkForm.jsx"
-import { ArtworkForm } from "../components/forms/ArtworkForm.jsx"
+import { CreateArtworkForm } from "../components/forms/CreateArtworkForm.jsx"
 import { UserList } from "../components/users/UserList.jsx"
 import { UserDetails } from "../components/users/UserDetails.jsx"
 import { UserForm } from "../components/forms/UserForm.jsx"
@@ -32,7 +32,7 @@ export const UserViews = ({ currentUser }) => {
                         <Route index element={<ArtworkDetails currentUser={currentUser}/>} />
                         <Route path="edit" element={<UpdateArtworkForm />}/>
                     </Route>
-                    <Route path="create" element={<ArtworkForm currentUser={currentUser} />} />
+                    <Route path="create" element={<CreateArtworkForm currentUser={currentUser} />} />
                 </Route>
                 <Route path="users">
                     <Route index element={<UserList currentUser={currentUser}/>} />

@@ -26,6 +26,18 @@ export const createArtwork = (artwork) => {
     )
 }
 
+export const createArtistArtwork = (artwork) => {
+    return fetch(
+        `http://localhost:8088/artistArtworks`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': "application/json",
+            },
+            body: JSON.stringify(artwork),
+        }
+    )
+}
+
 export const getAllGenres = () => {
     return fetch(`http://localhost:8088/genres`).then(res => res.json())
 }

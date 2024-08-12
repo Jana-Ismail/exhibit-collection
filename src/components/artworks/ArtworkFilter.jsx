@@ -34,6 +34,7 @@ export const ArtworkFilter = ( {
                             type="text"
                             placeholder="Search Artworks"
                             onChange={(event) => {setSearchTerm(event.target.value)}}
+                            className="filter-input"
                         />
                         ) : (
                         <select

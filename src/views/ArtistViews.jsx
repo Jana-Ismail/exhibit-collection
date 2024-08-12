@@ -9,6 +9,7 @@ import { UserDetails } from "../components/users/UserDetails.jsx"
 import { UserForm } from "../components/forms/UserForm.jsx"
 import { useEffect, useState } from "react"
 import { getArtistByUserId } from "../services/artistUserService.js"
+import { ArtistArtworkList } from "../components/artistUsers/ArtistArtworkList.jsx"
 
 export const ArtistViews = ({ currentUser }) => {
     const [currentArtistUser, setCurrentArtistUser] = useState(0)
@@ -45,7 +46,7 @@ export const ArtistViews = ({ currentUser }) => {
                     </Route>
                     <Route path="create" element={<CreateArtworkForm currentArtistUser={currentArtistUser} currentUser={currentUser} />} />
                 </Route>
-                <Route path="personal-artwork" element={<div>My Artwork</div>}/>
+                <Route path="personal-artwork" element={<ArtistArtworkList currentArtistUser={currentArtistUser}/>}/>
                 <Route path="users">
                     <Route index element={<UserList currentUser={currentUser}/>} />
                     <Route path=":userId" element={<UserDetails currentUser={currentUser}/>}>

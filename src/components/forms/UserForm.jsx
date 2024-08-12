@@ -43,7 +43,7 @@ export const UserForm = ( { currentUser } ) => {
                 <div className="form-group">
                     <label>Name:</label>
                     <input 
-                        className="form-control" 
+                        className="form-control-update" 
                         type="text"
                         value={user.name}
                         onChange={(event) => {

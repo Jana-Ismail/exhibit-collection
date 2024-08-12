@@ -49,8 +49,8 @@ export const Login = () => {
             </div>
           </fieldset>
           <fieldset>
-            <div className="form-group">
-              <button className="login-btn btn-info" type="submit">
+            <div className="form-group align-button" >
+              <button className="sign-in-btn" type="submit">
                 Sign in
               </button>
             </div>

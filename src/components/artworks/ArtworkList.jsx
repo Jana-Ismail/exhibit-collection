@@ -38,7 +38,7 @@ export const ArtworkList = ({ currentUser }) => {
     useEffect(() => {
         getAndSetArtworks()
         getAndSetAllGenres()
-    }, [])
+    }, [showFavoritesOnly])
 
     useEffect(() => {
         const currentUserArtworks = (artworks.filter(artwork => currentUser.id === artwork.userId))

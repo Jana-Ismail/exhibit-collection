@@ -96,12 +96,12 @@ export const UserForm = ( { currentUser } ) => {
                     />
                 </div>
             </fieldset>
+        </form>
             <fieldset>
                 <div className="button-container">
-                    <button className="save-btn" onClick={handleSave}>Save Profile</button>
+                    <button className="edit-btn" onClick={handleSave}>Save Profile</button>
                 </div>
             </fieldset>
-        </form>
         </>
     )
 }

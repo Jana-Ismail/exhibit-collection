@@ -1,25 +1,26 @@
 import { useEffect, useState } from "react"
-import { getAllArtworks, getAllGenres } from "../../services/artworkService.js"
-import { Artwork } from "./Artwork"
+import { getArtworksByUserId, getAllGenres, getAllMediums } from "../../services/artworkService.js"
+import { Artwork } from "./Artwork.jsx"
 import "./Artwork.css"
 import { Link, useNavigate } from "react-router-dom"
 import { ArtworkFilter } from "./ArtworkFilter.jsx"
 
-
 export const ArtworkList = ({ currentUser }) => {
-    const [artworks, setArtworks] = useState([])
-    const [showFavoritesOnly, setShowFavoritesOnly] = useState(false)
     const [allArtworks, setAllArtworks] = useState([])
-    const [genres, setGenres] = useState([])
     const [filteredArtworks, setFilteredArtworks] = useState([])
+    const [showFavoritesOnly, setShowFavoritesOnly] = useState(false)
+    const [genres, setGenres] = useState([])
+    const [mediums, setMediums] = useState([])
     const [selectedFilterOption, setSelectedFilterOption] = useState(0)
     const [genreOption, setGenreOption] = useState(0)
+    const [mediumOption, setMediumOption] = useState(0)
     const [searchTerm, setSearchTerm] = useState("")
     const navigate = useNavigate()
 
-    const getAndSetArtworks = () => {
-        getAllArtworks().then(artworksArr => {
-            setArtworks(artworksArr)
+    const getAndSetUserArtworks = () => {
+        // Modified to use getArtworksByUserId
+        getArtworksByUserId(currentUser.id).then(artworksArr => {
+            setAllArtworks(artworksArr)
         })
     }
 
@@ -28,23 +29,25 @@ export const ArtworkList = ({ currentUser }) => {
             setGenres(genresArr)
         })
     }
-    
-    // const getAndSetArtworks = () => {
-    //     getArtworksByUserId(currentUser?.id).then(artworksArr => {
-    //         setArtworks(artworksArr)
-    //     })
-    // }
 
+    const getAndSetMediums = () => {
+        getAllMediums().then((mediumsArr) => {
+            setMediums(mediumsArr)
+        })
+    }
+
+    // Initial data fetch
     useEffect(() => {
-        getAndSetArtworks()
+        getAndSetUserArtworks()
+    }, [currentUser.id, showFavoritesOnly, selectedFilterOption])
+
+    // Fetch genres and mediums
+    useEffect(() => {
         getAndSetAllGenres()
-    }, [showFavoritesOnly])
+        getAndSetMediums()
+    }, [])
 
-    useEffect(() => {
-        const currentUserArtworks = (artworks.filter(artwork => currentUser.id === artwork.userId))
-        setAllArtworks(currentUserArtworks)
-    }, [artworks, currentUser])
-
+    // Handle favorites filtering
     useEffect(() => {
         if (showFavoritesOnly) {
             const favoritedArtworks = allArtworks.filter(artwork => artwork.isFavorited)
@@ -52,69 +55,58 @@ export const ArtworkList = ({ currentUser }) => {
         } else {
             setFilteredArtworks(allArtworks)
         }
-    }, [showFavoritesOnly, artworks, allArtworks])
+    }, [showFavoritesOnly, allArtworks])
 
+    // Handle search and filtering
     useEffect(() => {
-        if (selectedFilterOption === 1) {
-            if (showFavoritesOnly) {
-                const foundArtworks = filteredArtworks.filter(artwork => artwork.locationViewed.toLowerCase().includes(searchTerm.toLowerCase()))
-                setFilteredArtworks(foundArtworks)
-            } else {
-                const foundArtworks = allArtworks.filter(artwork => artwork.locationViewed.toLowerCase().includes(searchTerm.toLowerCase()))
-                setFilteredArtworks(foundArtworks)
-            }
-        } else if (selectedFilterOption === 2) {
-            if (showFavoritesOnly) {
-                const foundArtworks = filteredArtworks.filter(artwork => artwork.cityViewed.toLowerCase().includes(searchTerm.toLowerCase()))
-                setFilteredArtworks(foundArtworks)
-            } else {
-                const foundArtworks = allArtworks.filter(artwork => artwork.cityViewed.toLowerCase().includes(searchTerm.toLowerCase()))
-                setFilteredArtworks(foundArtworks)
-            }
-        } else if (selectedFilterOption === 3) {
-            if (showFavoritesOnly) {
-                const foundArtworks = filteredArtworks.filter(artwork => artwork.dateViewed.includes(searchTerm))
-                setFilteredArtworks(foundArtworks)
-            } else {
-                const foundArtworks = allArtworks.filter(artwork => artwork.dateViewed.includes(searchTerm))
-            setFilteredArtworks(foundArtworks)
-            }
-        } else if (selectedFilterOption === 4) {
-            if (showFavoritesOnly) {
-                const foundArtworks = filteredArtworks.filter(artwork => artwork.artist.toLowerCase().includes(searchTerm.toLowerCase()))
-                setFilteredArtworks(foundArtworks)
-            } else {
-                const foundArtworks = allArtworks.filter(artwork => artwork.artist.toLowerCase().includes(searchTerm.toLowerCase()))
-                setFilteredArtworks(foundArtworks)
-            }
-        } else if (selectedFilterOption === 5) {
-            // This code is working to filter on first click, but not working if the option is changed again
-            // Thinking maybe need to define this functionality in its own function, then call the function in a useEffect when the genreOption state changes?
-            // Unsure though.. need to revisit
-                // const foundArtworks = artworks.filter(artwork => artwork.genreId === 2)
-                // setFilteredArtworks(foundArtworks)
-        } else if (selectedFilterOption === 6) {
-            // This will be same as genre select functionality once I figure that out
-            
-        } else if (selectedFilterOption === 7) {
-            if (showFavoritesOnly) {
-                const foundArtworks = filteredArtworks.filter(artwork => artwork.nationality.toLowerCase().includes(searchTerm.toLowerCase()))
-                setFilteredArtworks(foundArtworks)
-            } else {
-                const foundArtworks = allArtworks.filter(artwork => artwork.nationality.toLowerCase().includes(searchTerm.toLowerCase()))
-            setFilteredArtworks(foundArtworks)
-            }
-        } else if (selectedFilterOption === 8) {
-            if (showFavoritesOnly) {
-                const foundArtworks = filteredArtworks.filter(artwork => artwork.notes.toLowerCase().includes(searchTerm.toLowerCase()))
-                setFilteredArtworks(foundArtworks)
-            } else {
-                const foundArtworks = allArtworks.filter(artwork => artwork.notes.toLowerCase().includes(searchTerm.toLowerCase()))
-            setFilteredArtworks(foundArtworks)
-            }
+        let foundArtworks = allArtworks
+
+        if (showFavoritesOnly) {
+            foundArtworks = foundArtworks.filter(artwork => artwork.isFavorited)
         }
 
-    }, [searchTerm, genreOption, selectedFilterOption, artworks, allArtworks, showFavoritesOnly])
+        switch (selectedFilterOption) {
+            case 1: // Gallery
+                foundArtworks = foundArtworks.filter(artwork => 
+                    artwork.locationViewed.toLowerCase().includes(searchTerm.toLowerCase()))
+                break
+            case 2: // City
+                foundArtworks = foundArtworks.filter(artwork => 
+                    artwork.cityViewed.toLowerCase().includes(searchTerm.toLowerCase()))
+                break
+            case 3: // Date
+                foundArtworks = foundArtworks.filter(artwork => 
+                    artwork.dateViewed.includes(searchTerm))
+                break
+            case 4: // Artist
+                foundArtworks = foundArtworks.filter(artwork => 
+                    artwork.artist.toLowerCase().includes(searchTerm.toLowerCase()))
+                break
+            case 5: // Genre
+                if (genreOption) {
+                    foundArtworks = foundArtworks.filter(artwork => 
+                        artwork.genreId === genreOption)
+                }
+                break
+            case 6: // Medium
+                if (mediumOption) {
+                    foundArtworks = foundArtworks.filter(artwork => 
+                        artwork.mediumId === mediumOption)
+                }
+                break
+            case 7: // Nationality
+                foundArtworks = foundArtworks.filter(artwork => 
+                    artwork.nationality.toLowerCase().includes(searchTerm.toLowerCase()))
+                break
+            case 8: // Notes
+                foundArtworks = foundArtworks.filter(artwork => 
+                    artwork.notes.toLowerCase().includes(searchTerm.toLowerCase()))
+                break
+        }
+
+        setFilteredArtworks(foundArtworks)
+
+    }, [searchTerm, genreOption, mediumOption, selectedFilterOption, allArtworks, showFavoritesOnly])
 
     return (
         <>
@@ -133,7 +125,10 @@ export const ArtworkList = ({ currentUser }) => {
                 <div className="artworks-toggle">
                     <button 
                         className="btn-all-artworks"
-                        onClick={() => setShowFavoritesOnly(false)}
+                        onClick={() => {
+                            setShowFavoritesOnly(false)
+                            setSelectedFilterOption(0)
+                        }}
                     >
                         All
                     </button>
@@ -143,18 +138,21 @@ export const ArtworkList = ({ currentUser }) => {
                     >
                         Favorites
                     </button>
-                <ArtworkFilter
-                    selectedFilterOption={selectedFilterOption} 
-                    setSelectedFilterOption={setSelectedFilterOption}
-                    setSearchTerm={setSearchTerm}
-                    setGenreOption={setGenreOption}
-                />
+                    <ArtworkFilter
+                        selectedFilterOption={selectedFilterOption} 
+                        setSelectedFilterOption={setSelectedFilterOption}
+                        setSearchTerm={setSearchTerm}
+                        setGenreOption={setGenreOption}
+                        genres={genres}
+                        setMediumOption={setMediumOption}
+                        mediums={mediums}
+                    />
                 </div>
             </div>
             <div className="artwork-collection">
                 {filteredArtworks.map(artwork => {
                     return (
-                        <Link to={`/collection/${artwork.id}`} onClick={(event) => {
+                        <Link to={`/collection/${artwork.id}`} key={artwork.id} onClick={(event) => {
                             if (!event.target.closest(".favorite-icon") &&
                                 !event.target.closest(".delete-icon")) {
                                 navigate(`/collection/${artwork.id}`)
@@ -162,12 +160,15 @@ export const ArtworkList = ({ currentUser }) => {
                                 event.preventDefault()
                             }
                         }}>
-                            <Artwork artwork={artwork} key={artwork.id} getAndSetArtworks={getAndSetArtworks}/>
+                            <Artwork 
+                                artwork={artwork} 
+                                key={artwork.id} 
+                                getAndSetArtworks={getAndSetUserArtworks}
+                            />
                         </Link>
                     )
                 })}
             </div>
         </>
-        
     )
 }

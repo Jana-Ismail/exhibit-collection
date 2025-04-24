@@ -33,7 +33,7 @@ export const ArtistArtworkList = ({currentArtistUser}) => {
         
         {artistArtworks.map(artwork => {
             return (
-                <div className="artwork-collection-card">
+                <div className="artwork-collection-card" key={artwork.id}>
                     <div 
                         className="artwork-card-image"
                     > 

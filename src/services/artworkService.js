@@ -4,7 +4,7 @@ export const getAllArtworks = () => {
 
 
 export const getArtworksByUserId = (userId) => {
-    return fetch(`http://localhost:8088/artworks/?userId=${userId}&_expand=user`).then((res) => res.json())
+    return fetch(`http://localhost:8088/artworks/?userId=${userId}&_expand=genre&_expand=medium`).then((res) => res.json())
 }
 
 export  const getArtworkById = (artworkId) => {

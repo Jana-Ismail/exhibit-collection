@@ -4,7 +4,11 @@ export const ArtworkFilter = ( {
     selectedFilterOption, 
     setSelectedFilterOption, 
     setSearchTerm, 
-    setGenreOption} ) => {
+    setGenreOption,
+    genres,
+    setMediumOption,
+    mediums
+} ) => {
 
     return (
         <div className="filter-bar">
@@ -29,33 +33,47 @@ export const ArtworkFilter = ( {
                     </select>
                 </div>
                 <div className="filter-input-group">
-                    {selectedFilterOption !== 5 ? (
-                        <input
-                            type="text"
-                            placeholder="Search Artworks"
-                            onChange={(event) => {setSearchTerm(event.target.value)}}
-                            className="filter-input"
-                        />
+                    {
+                        selectedFilterOption === 5 ? (
+                            <select
+                                className="form-select-element"
+                                required
+                                id="artwork-genre"
+                                onChange={(event) => {
+                                    setGenreOption(parseInt(event.target.value))
+                                }}
+                            >
+                                <option value="0">Select a Genre</option>
+                                {genres?.map((genre) => {
+                                    return <option value={genre.id} key={genre.id}>{genre.type}</option>
+                                })}
+                            </select>
+                        ) : selectedFilterOption === 6 ? (
+                            <select
+                                className="form-select-element"
+                                required
+                                id="artwork-medium"
+                                onChange={(event) => {
+                                    setMediumOption(parseInt(event.target.value))
+                                }}
+                            >
+                                <option value="0">Select a Medium</option>
+                                {mediums?.map((medium) => {
+                                    return <option value={medium.id} key={medium.id}>{medium.type}</option>
+                                })}
+                            </select>
                         ) : (
-                        <select
-                            className="form-select-element" 
-                            required 
-                            id="artwork-genre"
-                            onChange={(event) => {
-                                setGenreOption(parseInt(event.target.value))
-                            }}
-                        >
-                            <option value="0" disabled>Select a Genre</option>
-                            <option value="1">Landscape</option>
-                            <option value="2">Portrait</option>
-                            <option value="3">Abstract</option>
-                            <option value="4">Still Life</option>
-                            <option value="5">Other</option>
-                        </select>
+                            <input
+                                type="text"
+                                placeholder="Search Artworks"
+                                onChange={(event) => { setSearchTerm(event.target.value) }}
+                                className="filter-input"
+                            />
                         )
                     }
-                </div>         
+                </div>
             </div>
         </div>
     )
+
 }

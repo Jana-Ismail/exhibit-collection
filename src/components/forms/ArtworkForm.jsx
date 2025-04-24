@@ -14,6 +14,7 @@ export const ArtworkForm = ({}) => {
         cityViewed: "",
         notes: "",
     })
+    const [genres, setGenres] = useState([])
 
     return (
         <div>
